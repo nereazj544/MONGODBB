@@ -127,7 +127,7 @@ public class MongoDB {
     private static void insertar(Scanner sc) {
         try (com.mongodb.client.MongoClient mClient = MongoClients.create()) {
             MongoDatabase database = mClient.getDatabase("IE");
-            
+
             System.out.println("Inserte: Nombre, Nacionalidad, Posiciones, Elemento, Equipo. Por separado");
             System.out.println("Enter para continuar");
             String enter = sc.nextLine();
@@ -146,7 +146,6 @@ public class MongoDB {
             System.out.print("Equipo: ");
             String Equipo = sc.nextLine();
             String e4 = sc.nextLine();
-            
 
             Document d = new Document();
             d.put("nombre", nombre);
@@ -154,39 +153,6 @@ public class MongoDB {
             d.put("posiciones", Posiciones);
             d.put("elemento", Elemento);
             d.put("Equipo", Equipo);
-
-
-
-            /*
-             * 
-             * String d = sc.nextLine();
-             * String enter = sc.nextLine();
-             * Document document = Document.parse(d);
-             * c.insertOne(document);
-             * 
-             * Scanner in = new Scanner(sc.nextLine());
-             * in.useDelimiter(",");
-             * System.out.println("Nombre: ");
-             * String nombre = in.next();
-             * System.out.println("Nacionalidad: ");
-             * String Nacionalidad = in.next();
-             * String enterN = sc.nextLine();
-             * System.out.println("Posiciones: ");
-             * String Posiciones = in.next();
-             * String enterP = sc.nextLine();
-             * System.out.println("Elemento: ");
-             * String Elemento = in.next();
-             * System.out.println("Equipo: ");
-             * String Equipo = in.next();
-             * String enterEString = sc.nextLine();
-             * BsonDocument d = new BsonDocument();
-             * d.append("Nombre", new BsonString(nombre));
-             * d.append("Nacionalidad", new BsonString(Nacionalidad));
-             * d.append("Posiciones", new BsonString(Posiciones));
-             * d.append("Elemento", new BsonString(Elemento));
-             * d.append("Equipo", new BsonString(Equipo));
-             */
-
 
             MongoCollection<Document> c = database.getCollection("Jugadores");
             c.insertOne(d);

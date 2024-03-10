@@ -7,3 +7,7 @@
 {"_id": {"$oid": "65edfaeb756ed183779a88e3"}, "Nombre": "Aitor", "Nacionalidad": "Japones", "Posiciones": "DF", "Elemento": "Bosque", "Equipos": "Raimon"}
 {"_id": {"$oid": "65edfaeb756ed183779a88e4"}, "Nombre": "JP", "Nacionalidad": "Japones", "Posiciones": "PR", "Elemento": "Montaña", "Equipos": "Raimon"}
 {"_id": {"$oid": "65edfaeb756ed183779a88e5"}, "Nombre": "Helio", "Nacionalidad": "Congo", "Posiciones": "PR", "Elemento": "Mountain", "Equipos": "Little"}
+{"_id": {"$oid": "65ee26f6f13c035e7e066aa9"}, "nombre": ""}
+{"_id": {"$oid": "65ee270ea1b65d0a2281f655"}, "nombre": ""}
+{"_id": {"$oid": "65ee27ed9883156610c82b35"}, "nombre": "", "nacionalidad": "Japones", "posiciones": "MD", "elemento": "Aire", "Equipo": "Raimon(Go)"}
+{"_id": {"$oid": "65ee2863ce47b1279520bf96"}, "nombre": "", "nacionalidad": "Japones", "posiciones": "MD", "elemento": "Aire", "Equipo": "LuzEterna"}

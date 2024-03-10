@@ -11,6 +11,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import org.bson.BsonDocument;
+import org.bson.BsonString;
 import org.bson.Document;
 
 import com.mongodb.MongoClient;
@@ -64,6 +66,7 @@ public class MongoDB {
     }
 
     // Crear JSON (FUNCIONA)
+    // 1
 
     private static void CrearFicheroJson() {
         // MongoDB
@@ -96,7 +99,7 @@ public class MongoDB {
     }
 
     // leer fichero
-
+    // 2
     private static void leerFicheroGuardardatos() {
         try (MongoClient mClient = new MongoClient();
                 FileReader fr = new FileReader("src\\main\\java\\RECURSOS\\Jugadores-MONGODB.json");
@@ -120,29 +123,86 @@ public class MongoDB {
     }
 
     // Insertar datos
+    // 3
     private static void insertar(Scanner sc) {
         try (com.mongodb.client.MongoClient mClient = MongoClients.create()) {
             MongoDatabase database = mClient.getDatabase("IE");
-        MongoCollection<Document> c = database.getCollection("Jugadores");
-
+            
             System.out.println("Inserte: Nombre, Nacionalidad, Posiciones, Elemento, Equipo. Por separado");
-            String d = sc.nextLine();
+            System.out.println("Enter para continuar");
             String enter = sc.nextLine();
+            System.out.print("Nombre: ");
+            String nombre = sc.nextLine();
+            String e = sc.nextLine();
+            System.out.print("Nacionalidad: ");
+            String Nacionalidad = sc.nextLine();
+            String e1 = sc.nextLine();
+            System.out.print("Posiciones: ");
+            String Posiciones = sc.nextLine();
+            String e2 = sc.nextLine();
+            System.out.print("Elemento: ");
+            String Elemento = sc.nextLine();
+            String e3 = sc.nextLine();
+            System.out.print("Equipo: ");
+            String Equipo = sc.nextLine();
+            String e4 = sc.nextLine();
+            
 
-            Document document = Document.parse(d);
+            Document d = new Document();
+            d.put("nombre", nombre);
+            d.put("nacionalidad", Nacionalidad);
+            d.put("posiciones", Posiciones);
+            d.put("elemento", Elemento);
+            d.put("Equipo", Equipo);
 
-            c.insertOne(document);
+
+
+            /*
+             * 
+             * String d = sc.nextLine();
+             * String enter = sc.nextLine();
+             * Document document = Document.parse(d);
+             * c.insertOne(document);
+             * 
+             * Scanner in = new Scanner(sc.nextLine());
+             * in.useDelimiter(",");
+             * System.out.println("Nombre: ");
+             * String nombre = in.next();
+             * System.out.println("Nacionalidad: ");
+             * String Nacionalidad = in.next();
+             * String enterN = sc.nextLine();
+             * System.out.println("Posiciones: ");
+             * String Posiciones = in.next();
+             * String enterP = sc.nextLine();
+             * System.out.println("Elemento: ");
+             * String Elemento = in.next();
+             * System.out.println("Equipo: ");
+             * String Equipo = in.next();
+             * String enterEString = sc.nextLine();
+             * BsonDocument d = new BsonDocument();
+             * d.append("Nombre", new BsonString(nombre));
+             * d.append("Nacionalidad", new BsonString(Nacionalidad));
+             * d.append("Posiciones", new BsonString(Posiciones));
+             * d.append("Elemento", new BsonString(Elemento));
+             * d.append("Equipo", new BsonString(Equipo));
+             */
+
+
+            MongoCollection<Document> c = database.getCollection("Jugadores");
+            c.insertOne(d);
             System.out.println("Insertado correctamente.");
+
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
     // Borrar datos
+    // 4
     private static void borrar(Scanner sc) {
         try (com.mongodb.client.MongoClient mClient = MongoClients.create()) {
             MongoDatabase database = mClient.getDatabase("IE");
-        MongoCollection<Document> c = database.getCollection("Jugadores");
+            MongoCollection<Document> c = database.getCollection("Jugadores");
 
             // System.out.println("Ingrese el id del jugador que vaya a borrar: ");
             // String dId = sc.nextLine();
@@ -167,10 +227,11 @@ public class MongoDB {
     }
 
     // Actualizar
+    // 5
     private static void actualizar(Scanner sc) {
         try (com.mongodb.client.MongoClient mClient = MongoClients.create()) {
             MongoDatabase database = mClient.getDatabase("IE");
-        MongoCollection<Document> c = database.getCollection("Jugadores");
+            MongoCollection<Document> c = database.getCollection("Jugadores");
 
             System.out.println("Ingrese el ID para actualizar al jugador: ");
             String dId = sc.nextLine();
@@ -192,4 +253,5 @@ public class MongoDB {
             e.printStackTrace();
         }
     }
+
 }

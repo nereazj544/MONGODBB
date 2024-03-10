@@ -1,8 +1,12 @@
 package Consulta;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,7 +25,6 @@ public class FicheroTexto {
 
     private static void CrearFicheroJson() {
         // MongoDB
-
         MongoClient mClient = new MongoClient();
         MongoDatabase database = mClient.getDatabase("IE");
         MongoCollection<Document> jugadoresCollection = database.getCollection("Jugadores");
@@ -51,8 +54,26 @@ public class FicheroTexto {
     }
 
     private static void leerFicheroGuardardatos() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'leerFicheroGuardardatos'");
+        try ( MongoClient mClient = new MongoClient();
+        FileReader fr = new FileReader("src\\main\\java\\RECURSOS\\J.json");
+        BufferedReader bf = new BufferedReader(fr)) {
+            MongoDatabase database = mClient.getDatabase("IE");
+            MongoCollection<Document> c = database.getCollection("Jugadores");
+
+            String json;
+
+            while ((json = bf.readLine()) != null) {
+                System.out.println(json);
+                Document dc = new Document(Document.parse(json));
+                c.insertOne(dc);
+            }
+
+        } catch (FileNotFoundException e){
+            e.printStackTrace();
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 }

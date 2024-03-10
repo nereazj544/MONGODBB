@@ -21,8 +21,8 @@ import com.mongodb.client.result.DeleteResult;
 
 public class MongoDB {
 
-    private static final String dbStr = "IE";
-    private static final String colStr = "Jugadores";
+    // private static final String dbStr = "IE";
+    // private static final String colStr = "Jugadores";
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
@@ -37,7 +37,6 @@ public class MongoDB {
             System.out.println("6. EXIT");
 
             int e = sc.nextInt();
-
             switch (e) {
                 case 1:
                     CrearFicheroJson();
@@ -64,7 +63,7 @@ public class MongoDB {
         }
     }
 
-    // Crear JSON
+    // Crear JSON (FUNCIONA)
 
     private static void CrearFicheroJson() {
         // MongoDB
@@ -122,12 +121,14 @@ public class MongoDB {
 
     // Insertar datos
     private static void insertar(Scanner sc) {
-        try (MongoClient mClient = (MongoClient) MongoClients.create()) {
-            MongoDatabase database = mClient.getDatabase(dbStr);
-            MongoCollection<Document> c = database.getCollection(colStr);
+        try (com.mongodb.client.MongoClient mClient = MongoClients.create()) {
+            MongoDatabase database = mClient.getDatabase("IE");
+        MongoCollection<Document> c = database.getCollection("Jugadores");
 
             System.out.println("Inserte: Nombre, Nacionalidad, Posiciones, Elemento, Equipo. Por separado");
             String d = sc.nextLine();
+            String enter = sc.nextLine();
+
             Document document = Document.parse(d);
 
             c.insertOne(document);
@@ -139,9 +140,9 @@ public class MongoDB {
 
     // Borrar datos
     private static void borrar(Scanner sc) {
-        try (MongoClient mClient = (MongoClient) MongoClients.create()) {
-            MongoDatabase database = mClient.getDatabase(dbStr);
-            MongoCollection<Document> c = database.getCollection(colStr);
+        try (com.mongodb.client.MongoClient mClient = MongoClients.create()) {
+            MongoDatabase database = mClient.getDatabase("IE");
+        MongoCollection<Document> c = database.getCollection("Jugadores");
 
             // System.out.println("Ingrese el id del jugador que vaya a borrar: ");
             // String dId = sc.nextLine();
@@ -150,6 +151,7 @@ public class MongoDB {
 
             System.out.println("Ingrese el id del jugador que vaya a borrar: ");
             String dId = sc.nextLine();
+            String enter = sc.nextLine();
 
             DeleteResult r = c.deleteOne(new Document("_id", dId));
 
@@ -164,13 +166,16 @@ public class MongoDB {
         }
     }
 
+    // Actualizar
     private static void actualizar(Scanner sc) {
-        try (MongoClient mClient = (MongoClient) MongoClients.create()) {
-            MongoDatabase database = mClient.getDatabase(dbStr);
-            MongoCollection<Document> c = database.getCollection(colStr);
+        try (com.mongodb.client.MongoClient mClient = MongoClients.create()) {
+            MongoDatabase database = mClient.getDatabase("IE");
+        MongoCollection<Document> c = database.getCollection("Jugadores");
 
             System.out.println("Ingrese el ID para actualizar al jugador: ");
             String dId = sc.nextLine();
+            String enter = sc.nextLine();
+
             System.out.println(
                     "Ingresa el campo que vas a actualciar (Nombre, Nacionalidad, Posiciones, Elemento, Equipo)");
             String Update = sc.nextLine();

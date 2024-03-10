@@ -11,8 +11,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import org.bson.BsonDocument;
-import org.bson.BsonString;
 import org.bson.Document;
 
 import com.mongodb.MongoClient;

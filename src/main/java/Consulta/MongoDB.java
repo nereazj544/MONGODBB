@@ -22,7 +22,6 @@ public class MongoDB {
 
     private static final String dbStr = "IE";
     private static final String colStr = "Jugadores";
-    private static final String json = "src\\main\\java\\RECURSOS\\JUGADORES-DEFINITIVOS.json";
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
@@ -120,10 +119,9 @@ public class MongoDB {
         }
     }
 
-
     // Insertar datos
     private static void insertar(Scanner sc) {
-        try(MongoClient mClient = (MongoClient) MongoClients.create()) {
+        try (MongoClient mClient = (MongoClient) MongoClients.create()) {
             MongoDatabase database = mClient.getDatabase(dbStr);
             MongoCollection<Document> c = database.getCollection(colStr);
 
@@ -139,10 +137,40 @@ public class MongoDB {
     }
 
     private static void borrar(Scanner sc) {
+        try (MongoClient mClient = (MongoClient) MongoClients.create()) {
+            MongoDatabase database = mClient.getDatabase(dbStr);
+            MongoCollection<Document> c = database.getCollection(colStr);
 
+            System.out.println("Ingrese el id del jugador que vaya a borrar: ");
+            String dId = sc.nextLine();
+            c.deleteOne(new Document("_id", dId));
+            System.out.println("Jugador con el id: " + dId + " eliminado.");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     private static void actualizar(Scanner sc) {
+        try (MongoClient mClient = (MongoClient) MongoClients.create()) {
+            MongoDatabase database = mClient.getDatabase(dbStr);
+            MongoCollection<Document> c = database.getCollection(colStr);
 
+            System.out.println("Ingrese el ID para actualizar al jugador: ");
+            String dId = sc.nextLine();
+            System.out.println(
+                    "Ingresa el campo que vas a actualciar (Nombre, Nacionalidad, Posiciones, Elemento, Equipo)");
+            String Update = sc.nextLine();
+            System.out.println("Ingresa el nuevo valor:");
+            String nuevo = sc.nextLine();
+
+            Document updateDoc = new Document();
+            updateDoc.put("$set", new Document(Update, nuevo));
+
+            c.updateOne(new Document("_id", dId), updateDoc);
+            System.out.println("Jugador actualizado.");
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

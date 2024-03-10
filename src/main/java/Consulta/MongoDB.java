@@ -17,6 +17,7 @@ import com.mongodb.MongoClient;
 import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
+import com.mongodb.client.result.DeleteResult;
 
 public class MongoDB {
 
@@ -71,7 +72,7 @@ public class MongoDB {
         MongoDatabase database = mClient.getDatabase("IE");
         MongoCollection<Document> jugadoresCollection = database.getCollection("Jugadores");
 
-        File file = new File("src\\main\\java\\RECURSOS\\J.json");
+        File file = new File("src\\main\\java\\RECURSOS\\Jugadores-MONGODB.json");
         FileWriter fic;
 
         try {
@@ -99,7 +100,7 @@ public class MongoDB {
 
     private static void leerFicheroGuardardatos() {
         try (MongoClient mClient = new MongoClient();
-                FileReader fr = new FileReader("src\\main\\java\\RECURSOS\\J.json");
+                FileReader fr = new FileReader("src\\main\\java\\RECURSOS\\Jugadores-MONGODB.json");
                 BufferedReader bf = new BufferedReader(fr)) {
             MongoDatabase database = mClient.getDatabase("IE");
             MongoCollection<Document> c = database.getCollection("Jugadores");
@@ -136,15 +137,28 @@ public class MongoDB {
         }
     }
 
+    // Borrar datos
     private static void borrar(Scanner sc) {
         try (MongoClient mClient = (MongoClient) MongoClients.create()) {
             MongoDatabase database = mClient.getDatabase(dbStr);
             MongoCollection<Document> c = database.getCollection(colStr);
 
+            // System.out.println("Ingrese el id del jugador que vaya a borrar: ");
+            // String dId = sc.nextLine();
+            // c.deleteOne(new Document("_id", dId));
+            // System.out.println("Jugador con el id: " + dId + " eliminado.");
+
             System.out.println("Ingrese el id del jugador que vaya a borrar: ");
             String dId = sc.nextLine();
-            c.deleteOne(new Document("_id", dId));
-            System.out.println("Jugador con el id: " + dId + " eliminado.");
+
+            DeleteResult r = c.deleteOne(new Document("_id", dId));
+
+            if (r.getDeletedCount() == 1) {
+                System.out.println("Jugador con el id: " + dId + " eliminado.");
+
+            } else {
+                System.out.println("Error al borrar el jugador");
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }

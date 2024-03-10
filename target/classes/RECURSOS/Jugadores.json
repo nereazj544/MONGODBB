@@ -1,14 +1,14 @@
 [{
     "Nombre": "Shawn",
     "Nacionalidad": "Japones",
-    "Posición(es)": " DF",
+    "Posiciones": " DF",
     "Elemento": "Aire",
     "Equipos": "Inazuma"
 },
 {
     "Nombre": "Byron",
     "Nacionalidad": "SurCoreano",
-    "Posición(es)": "MD",
+    "Posiciones": "MD",
     "Elemento": "Bosque",
     "Equipos": "DragonesFuego"
 },
@@ -16,7 +16,7 @@
 {
     "Nombre": "Claude",
     "Nacionalidad": "SurCoreano",
-    "Posición(es)": "DL",
+    "Posiciones": "DL",
     "Elemento": "Fuego",
     "Equipos": "DragonesFuego"
 },
@@ -24,7 +24,7 @@
 {
     "Nombre": "Hakuryuu",
     "Nacionalidad": "Japones",
-    "Posición(es)": "DL",
+    "Posiciones": "DL",
     "Elemento": "Aire",
     "Equipos": "LuzEterna"
 },
@@ -32,14 +32,14 @@
 {
     "Nombre": "Simeon",
     "Nacionalidad": "Desconocido",
-    "Posición(es)": "DL",
+    "Posiciones": "DL",
     "Elemento": "Mountain",
     "Equipos": "Ragnah"
 },
 {
     "Nombre": "Xavier",
     "Nacionalidad": "Japones",
-    "Posición(es)": "MD",
+    "Posiciones": "MD",
     "Elemento": "Fuego",
     "Equipos": "Inazuma"
 },
@@ -47,21 +47,21 @@
 {
     "Nombre": "Aitor",
     "Nacionalidad": "Japones",
-    "Posición(es)": "DF",
+    "Posiciones": "DF",
     "Elemento": "Bosque",
     "Equipos": "Raimon"
 },
 {
     "Nombre": "JP",
     "Nacionalidad": "Japones",
-    "Posición(es)": "PR",
+    "Posiciones": "PR",
     "Elemento": "Montaña",
     "Equipos": "Raimon"
 },
 {
     "Nombre": "Helio",
     "Nacionalidad": "Congo",
-    "Posición(es)": "PR",
+    "Posiciones": "PR",
     "Elemento": "Mountain",
     "Equipos": "Little"
 }

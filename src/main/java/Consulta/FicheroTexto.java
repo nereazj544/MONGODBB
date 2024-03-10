@@ -15,13 +15,18 @@ import com.mongodb.client.MongoDatabase;
 public class FicheroTexto {
     public static void main(String[] args) {
 
-        //MongoDB
+        CrearFicheroJson();
+        leerFicheroGuardardatos();
+    }
+
+    private static void CrearFicheroJson() {
+        // MongoDB
 
         MongoClient mClient = new MongoClient();
         MongoDatabase database = mClient.getDatabase("IE");
         MongoCollection<Document> jugadoresCollection = database.getCollection("Jugadores");
 
-        File file = new File("C:\\Users\\nzjha\\Desktop\\Clase-eciplse\\VISUALSTUDIO\\MONGODBB\\src\\main\\java\\RECURSOS\\Jugadores2.json");
+        File file = new File("src\\main\\java\\RECURSOS\\J.json");
         FileWriter fic;
 
         try {
@@ -44,4 +49,10 @@ public class FicheroTexto {
 
         mClient.close();
     }
+
+    private static void leerFicheroGuardardatos() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'leerFicheroGuardardatos'");
+    }
+
 }

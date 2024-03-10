@@ -1,0 +1,100 @@
+Este error lo da con la opcion dos:
+
+mar 10, 2024 9:04:03 P.áM. com.mongodb.diagnostics.logging.JULLogger log
+INFO: Cluster created with settings {hosts=[127.0.0.1:27017], mode=SINGLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms', maxWaitQueueSize=500}
+{"_id": {"$oid": "65edfaeb756ed183779a88dd"}, "Nombre": "Shawn", "Nacionalidad": "Japones", "Posiciones": " DF", "Elemento": "Aire", "Equipos": "Inazuma"}
+mar 10, 2024 9:04:03 P.áM. com.mongodb.diagnostics.logging.JULLogger log
+INFO: Opened connection [connectionId{localValue:3, serverValue:109}] to 127.0.0.1:27017
+mar 10, 2024 9:04:03 P.áM. com.mongodb.diagnostics.logging.JULLogger log
+INFO: Monitor thread successfully connected to server with description ServerDescription{address=127.0.0.1:27017, type=STANDALONE, state=CONNECTED, ok=true, version=ServerVersion{versionList=[7, 0, 5]}, minWireVersion=0, maxWireVersion=21, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=1207600}
+mar 10, 2024 9:04:03 P.áM. com.mongodb.diagnostics.logging.JULLogger log
+INFO: Opened connection [connectionId{localValue:4, serverValue:110}] to 127.0.0.1:27017
+Exception in thread "main" com.mongodb.MongoWriteException: Write operation error on server 127.0.0.1:27017. Write error: WriteError{code=11000, message='E11000 duplicate key error collection: IE.Jugadores index: _id_ dup key: { _id: ObjectId('65edfaeb756ed183779a88dd') }', details={}}.
+        at com.mongodb.client.internal.MongoCollectionImpl.executeSingleWriteRequest(MongoCollectionImpl.java:1060)
+        at com.mongodb.client.internal.MongoCollectionImpl.executeInsertOne(MongoCollectionImpl.java:503)
+        at com.mongodb.client.internal.MongoCollectionImpl.insertOne(MongoCollectionImpl.java:487)
+        at com.mongodb.client.internal.MongoCollectionImpl.insertOne(MongoCollectionImpl.java:481)
+        at Consulta.MongoDB.leerFicheroGuardardatos(MongoDB.java:113)
+        at Consulta.MongoDB.main(MongoDB.java:46)
+
+
+Este error sale con la 3
+
+3
+mar 10, 2024 9:05:47 P.áM. com.mongodb.diagnostics.logging.JULLogger log
+INFO: Cluster created with settings {hosts=[localhost:27017], mode=SINGLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms', maxWaitQueueSize=500}
+java.lang.ClassCastException: class com.mongodb.client.internal.MongoClientImpl cannot be cast to class com.mongodb.MongoClient (com.mongodb.client.internal.MongoClientImpl and com.mongodb.MongoClient are in unnamed module of loader 'app')
+        at Consulta.MongoDB.insertar(MongoDB.java:125)
+        at Consulta.MongoDB.main(MongoDB.java:49)
+
+ Selecciona una opcion:
+1. Crear archivo JSON.
+2. Leer el archivo JSON y insertar la coleccion dentro del MongoDB.
+3. Insertar
+4. Borrar
+5. Actualizar
+6. EXIT
+mar 10, 2024 9:05:47 P.áM. com.mongodb.diagnostics.logging.JULLogger log
+INFO: Opened connection [connectionId{localValue:1, serverValue:111}] to localhost:27017
+mar 10, 2024 9:05:47 P.áM. com.mongodb.diagnostics.logging.JULLogger log
+INFO: Monitor thread successfully connected to server with description ServerDescription{address=localhost:27017, type=STANDALONE, state=CONNECTED, ok=true, version=ServerVersion{versionList=[7, 0, 5]}, minWireVersion=0, maxWireVersion=21, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=3758100}
+axel japones dl fuego inazuma
+Exception in thread "main" java.util.InputMismatchException
+        at java.base/java.util.Scanner.throwFor(Scanner.java:939)
+        at java.base/java.util.Scanner.next(Scanner.java:1594)
+        at java.base/java.util.Scanner.nextInt(Scanner.java:2258)
+        at java.base/java.util.Scanner.nextInt(Scanner.java:2212)
+        at Consulta.MongoDB.main(MongoDB.java:39)
+
+4
+mar 10, 2024 9:07:34 P.áM. com.mongodb.diagnostics.logging.JULLogger log
+INFO: Cluster created with settings {hosts=[localhost:27017], mode=SINGLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms', maxWaitQueueSize=500}
+java.lang.ClassCastException: class com.mongodb.client.internal.MongoClientImpl cannot be cast to class com.mongodb.MongoClient (com.mongodb.client.internal.MongoClientImpl and com.mongodb.MongoClient are in unnamed module of loader 'app')
+        at Consulta.MongoDB.borrar(MongoDB.java:142)
+        at Consulta.MongoDB.main(MongoDB.java:52)
+
+ Selecciona una opcion:
+1. Crear archivo JSON.
+2. Leer el archivo JSON y insertar la coleccion dentro del MongoDB.
+3. Insertar
+4. Borrar
+5. Actualizar
+6. EXIT
+mar 10, 2024 9:07:34 P.áM. com.mongodb.diagnostics.logging.JULLogger log
+INFO: Opened connection [connectionId{localValue:1, serverValue:112}] to localhost:27017
+mar 10, 2024 9:07:34 P.áM. com.mongodb.diagnostics.logging.JULLogger log
+INFO: Monitor thread successfully connected to server with description ServerDescription{address=localhost:27017, type=STANDALONE, state=CONNECTED, ok=true, version=ServerVersion{versionList=[7, 0, 5]}, minWireVersion=0, maxWireVersion=21, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=8141800}
+65edf69c756ed183779a88db
+Exception in thread "main" java.util.InputMismatchException
+        at java.base/java.util.Scanner.throwFor(Scanner.java:939)
+        at java.base/java.util.Scanner.next(Scanner.java:1594)
+        at java.base/java.util.Scanner.nextInt(Scanner.java:2258)
+        at java.base/java.util.Scanner.nextInt(Scanner.java:2212)
+        at Consulta.MongoDB.main(MongoDB.java:39)
+
+
+        5
+mar 10, 2024 9:08:49 P.áM. com.mongodb.diagnostics.logging.JULLogger log
+INFO: Cluster created with settings {hosts=[localhost:27017], mode=SINGLE, requiredClusterType=UNKNOWN, serverSelectionTimeout='30000 ms', maxWaitQueueSize=500}
+java.lang.ClassCastException: class com.mongodb.client.internal.MongoClientImpl cannot be cast to class com.mongodb.MongoClient (com.mongodb.client.internal.MongoClientImpl and com.mongodb.MongoClient are in unnamed module of loader 'app')
+        at Consulta.MongoDB.actualizar(MongoDB.java:168)
+        at Consulta.MongoDB.main(MongoDB.java:55)
+
+ Selecciona una opcion:
+1. Crear archivo JSON.
+2. Leer el archivo JSON y insertar la coleccion dentro del MongoDB.
+3. Insertar
+4. Borrar
+5. Actualizar
+6. EXIT
+mar 10, 2024 9:08:49 P.áM. com.mongodb.diagnostics.logging.JULLogger log
+INFO: Opened connection [connectionId{localValue:1, serverValue:113}] to localhost:27017
+mar 10, 2024 9:08:49 P.áM. com.mongodb.diagnostics.logging.JULLogger log
+INFO: Monitor thread successfully connected to server with description ServerDescription{address=localhost:27017, type=STANDALONE, state=CONNECTED, ok=true, version=ServerVersion{versionList=[7, 0, 5]}, minWireVersion=0, maxWireVersion=21, maxDocumentSize=16777216, logicalSessionTimeoutMinutes=30, roundTripTimeNanos=6235500}
+65edf69c756ed183779a88db
+Exception in thread "main" java.util.InputMismatchException
+        at java.base/java.util.Scanner.throwFor(Scanner.java:939)
+        at java.base/java.util.Scanner.next(Scanner.java:1594)
+        at java.base/java.util.Scanner.nextInt(Scanner.java:2258)
+        at java.base/java.util.Scanner.nextInt(Scanner.java:2212)
+        at Consulta.MongoDB.main(MongoDB.java:39)

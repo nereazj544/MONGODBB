@@ -1,0 +1,78 @@
+[
+    {
+        "Nombre": "Inazuma Japon",
+        "Liga": "Japón",
+        "Entrenador": "Seymour Hillman",
+        "Capitan": "Mark Evans",
+        "Jugadores": [
+            "Mark Evans",
+            "Nathan Swift",
+            "Jack Wallside",
+            "Hurley Kane",
+            "Scott Banyan",
+            "Archer Hawkins",
+            "Caleb Stonewall",
+            "Shawn Froste",
+            "Axel Blaze",
+            "Austin Hobbes",
+            "Thor Stoutberg",
+            "Jude Sharp",
+            "David Samford",
+            "Kevin Dragonfly",
+            "Xavier Foster",
+            "Darren LaChance"
+        ]
+    },
+    {
+        "Nombre": "Dragones de Fuego",
+        "Liga": "Sur Corea",
+        "Entrenador": "Lee Jin Sung",
+        "Capitan": "Changsu Choi",
+        "Jugadores": [
+            "Jang Cho",
+            "Umi Wang",
+            "Doyo Hong",
+            "Minho Cho",
+            "Songwan Ko",
+            "Changsu Choi",
+            "Pekyong Park",
+            "Enyong Kim",
+            "Byron Love",
+            "Bryce Whitingale",
+            "Claude Beacons",
+            "Chi-Won Ho",
+            "Dong-Hyun Seul",
+            "Jung-Hoon Yi",
+            "Sung-Jin Noh",
+            "Joon-Ho Ja"
+        ]
+    },
+    {
+        "Nombre": "Instituto Raimon(Go)",
+        "Liga": "Japon",
+        "Entrenador": "Mark Evans",
+        "Capitan": "Arion Sherwind",
+        "Jugadores": [
+            "JP",
+            "Aitor Cazador"
+        ]
+    },
+    {
+        "Nombre": "Luz Eterna",
+        "Liga": "Japon",
+        "Entrenador": "Pinkus Mountbatten",
+        "Capitan": "Hakuryuu",
+        "Jugadores": [
+            "Hakuryuu"
+        ]
+    },
+    {
+        "Nombre": "Ragnah",
+        "Liga": "Japon",
+        "Entrenador": "",
+        "Capitan": "Simeon",
+        "Jugadores": [
+            "Simeon"
+        ]
+    }
+]

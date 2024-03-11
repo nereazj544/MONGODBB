@@ -27,6 +27,7 @@ public class MongoDB {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
+        // 
         while (true) {
             System.err.println("\n Selecciona una opcion: ");
             System.out.println("1. Crear archivo JSON.");
@@ -71,6 +72,10 @@ public class MongoDB {
         MongoClient mClient = new MongoClient();
         MongoDatabase database = mClient.getDatabase("IE");
         MongoCollection<Document> jugadoresCollection = database.getCollection("Jugadores");
+
+        System.out.println("Inserta la linea + el nombre del archivo json");
+        // String ruta = sc.nextLine();
+        // String enter= sc.nextLine();
 
         File file = new File("src\\main\\java\\RECURSOS\\Jugadores-MONGODB.json");
         FileWriter fic;
@@ -127,22 +132,40 @@ public class MongoDB {
             MongoDatabase database = mClient.getDatabase("IE");
 
             System.out.println("Inserte: Nombre, Nacionalidad, Posiciones, Elemento, Equipo. Por separado");
+            String enter1 = sc.nextLine();
             System.out.println("Enter para continuar");
+            
+
             String enter = sc.nextLine();
+
             System.out.print("Nombre: ");
             String nombre = sc.nextLine();
+            
+            System.out.print("ENTER");
             String e = sc.nextLine();
+            
             System.out.print("Nacionalidad: ");
             String Nacionalidad = sc.nextLine();
+            
+            System.out.print("ENTER");
             String e1 = sc.nextLine();
+            
             System.out.print("Posiciones: ");
             String Posiciones = sc.nextLine();
+            
+            System.out.print("ENTER");
             String e2 = sc.nextLine();
+            
             System.out.print("Elemento: ");
             String Elemento = sc.nextLine();
+            
+            System.out.print("ENTER");
             String e3 = sc.nextLine();
+            
             System.out.print("Equipo: ");
             String Equipo = sc.nextLine();
+            
+            System.out.print("ENTER");
             String e4 = sc.nextLine();
 
             Document d = new Document();
@@ -195,23 +218,25 @@ public class MongoDB {
     private static void actualizar(Scanner sc) {
         try (com.mongodb.client.MongoClient mClient = MongoClients.create()) {
             MongoDatabase database = mClient.getDatabase("IE");
-            MongoCollection<Document> c = database.getCollection("Jugadores");
-
+            
             System.out.println("Ingrese el ID para actualizar al jugador: ");
             String dId = sc.nextLine();
             String enter = sc.nextLine();
-
-            System.out.println(
-                    "Ingresa el campo que vas a actualciar (Nombre, Nacionalidad, Posiciones, Elemento, Equipo)");
+            
+            System.out.println("Ingresa el campo que vas a actualciar (Nombre, Nacionalidad, Posiciones, Elemento, Equipo)");
             String Update = sc.nextLine();
             System.out.println("Ingresa el nuevo valor:");
             String nuevo = sc.nextLine();
-
+            
             Document updateDoc = new Document();
             updateDoc.put("$set", new Document(Update, nuevo));
+            
+            System.out.println("Jugador actualizado.");
+            MongoCollection<Document> c = database.getCollection("Jugadores");
 
             c.updateOne(new Document("_id", dId), updateDoc);
-            System.out.println("Jugador actualizado.");
+            updateDoc.put("nuevo", nuevo);
+            c.insertOne(updateDoc);
 
         } catch (Exception e) {
             e.printStackTrace();

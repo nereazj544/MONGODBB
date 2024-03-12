@@ -103,6 +103,8 @@ public class MongoDB {
 
     // leer fichero
     // 2
+
+    // Analiza el documento JSON y lo inserta en la coleccion de Jugadores
     private static void leerFicheroGuardardatos() {
         try (MongoClient mClient = new MongoClient();
                 FileReader fr = new FileReader("src\\main\\java\\RECURSOS\\Jugadores-MONGODB.json");
@@ -127,6 +129,8 @@ public class MongoDB {
 
     // Insertar datos
     // 3
+
+    //Se le pide al user que inserte los datos
     private static void insertar(Scanner sc) {
         try (com.mongodb.client.MongoClient mClient = MongoClients.create()) {
             MongoDatabase database = mClient.getDatabase("IE");
@@ -186,6 +190,7 @@ public class MongoDB {
 
     // Borrar datos
     // 4
+    // se le pide al user que escriba el id del jugador que desea borrar
     private static void borrar(Scanner sc) {
         try (com.mongodb.client.MongoClient mClient = MongoClients.create()) {
             MongoDatabase database = mClient.getDatabase("IE");
@@ -215,6 +220,7 @@ public class MongoDB {
 
     // Actualizar
     // 5
+    
     private static void actualizar(Scanner sc) {
         try (com.mongodb.client.MongoClient mClient = MongoClients.create()) {
             MongoDatabase database = mClient.getDatabase("IE");
@@ -279,3 +285,4 @@ public class MongoDB {
     }
 
 }
+

@@ -8,3 +8,4 @@
 {"_id": {"$oid": "65edfaeb756ed183779a88e4"}, "Nombre": "JP", "Nacionalidad": "Japones", "Posiciones": "PR", "Elemento": "Montaña", "Equipos": "Raimon"}
 {"_id": {"$oid": "65edfaeb756ed183779a88e5"}, "Nombre": "Helio", "Nacionalidad": "Congo", "Posiciones": "PR", "Elemento": "Mountain", "Equipos": "Little"}
 {"_id": {"$oid": "65ef786f1807132791ca7902"}, "nombre": "Omega", "nacionalidad": "Japones", "posiciones": "DL", "elemento": "Mountain", "Equipo": "ProtocoloOmega3.0"}
+{"_id": {"$oid": "65f0d31e8436de4a422d7c34"}, "nombre": "Beta", "nacionalidad": "Desconocido", "posiciones": "DL", "elemento": "Aire", "Equipo": "ProtocoloOmega2.0"}

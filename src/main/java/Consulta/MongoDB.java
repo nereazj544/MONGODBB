@@ -30,11 +30,11 @@ public class MongoDB {
         // 
         while (true) {
             System.err.println("\n Selecciona una opcion: ");
-            System.out.println("1. Crear archivo JSON.");
-            System.out.println("2. Leer el archivo JSON y insertar la coleccion dentro del MongoDB.");
-            System.out.println("3. Insertar");
-            System.out.println("4. Borrar");
-            System.out.println("5. Actualizar");
+            System.out.println("1. Crear archivo JSON. (FUNCIONA)");
+            System.out.println("2. Leer el archivo JSON y insertar la coleccion dentro del MongoDB. (NO SE SI FUNCIONA)");
+            System.out.println("3. Insertar (FUNCIONA)");
+            System.out.println("4. Borrar (NO FUNCIONA)");
+            System.out.println("5. Actualizar (NO FUNCIONA) ");
             System.out.println("6. EXIT");
 
             int e = sc.nextInt();
@@ -221,22 +221,57 @@ public class MongoDB {
             
             System.out.println("Ingrese el ID para actualizar al jugador: ");
             String dId = sc.nextLine();
-            String enter = sc.nextLine();
+            // String enter = sc.nextLine();
             
-            System.out.println("Ingresa el campo que vas a actualciar (Nombre, Nacionalidad, Posiciones, Elemento, Equipo)");
+            // System.out.println("ENTER");
             String Update = sc.nextLine();
-            System.out.println("Ingresa el nuevo valor:");
-            String nuevo = sc.nextLine();
-            
             Document updateDoc = new Document();
+
+            System.out.println("Escribe el campo que quieras actualizar");
+            // switch (Update) {
+            //     case "Nombre":
+            //         String nombre = sc.nextLine();
+            //         updateDoc.put("$set", new Document("nombre", nombre));
+            //         break;
+            //         case "Nacionalidad":
+            //         String nacionalidad = sc.nextLine();
+            //         updateDoc.put("$set", new Document("nacionalidad", nacionalidad));
+                    
+            //         break;
+            //         case "Posiciones":
+            //         String Posiciones = sc.nextLine();
+            //         updateDoc.put("$set", new Document("Posiciones", Posiciones));
+                    
+            //         break;
+            //         case "Elemento":
+            //         String Elemento = sc.nextLine();
+            //         updateDoc.put("$set", new Document("Elemento", Elemento));
+                    
+            //         break;
+            
+            //     case "Equipo":
+            //         String Equipo = sc.nextLine();
+            //         updateDoc.put("$set", new Document("Equipo", Equipo));
+            //         break;
+            
+            //     default:
+            //     System.out.println("No valido");
+            //         break;
+            // }
+
+
+            String nuevo = sc.nextLine();
+            System.out.println("Ingresa el nuevo valor:");
+            
+            
             updateDoc.put("$set", new Document(Update, nuevo));
             
-            System.out.println("Jugador actualizado.");
             MongoCollection<Document> c = database.getCollection("Jugadores");
-
-            c.updateOne(new Document("_id", dId), updateDoc);
+            
             updateDoc.put("nuevo", nuevo);
-            c.insertOne(updateDoc);
+            // c.insertOne(updateDoc);
+            c.updateOne(new Document("_id", dId), updateDoc);
+            System.out.println("Jugador actualizado.");
 
         } catch (Exception e) {
             e.printStackTrace();

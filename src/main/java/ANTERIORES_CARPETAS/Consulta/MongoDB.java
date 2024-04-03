@@ -1,4 +1,4 @@
-package Consulta;
+package ANTERIORES_CARPETAS.Consulta;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;

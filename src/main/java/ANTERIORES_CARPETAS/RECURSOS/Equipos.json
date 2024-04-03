@@ -29,22 +29,9 @@
         "Entrenador": "Lee Jin Sung",
         "Capitan": "Changsu Choi",
         "Jugadores": [
-            "Jang Cho",
-            "Umi Wang",
-            "Doyo Hong",
-            "Minho Cho",
-            "Songwan Ko",
-            "Changsu Choi",
-            "Pekyong Park",
-            "Enyong Kim",
             "Byron Love",
             "Bryce Whitingale",
-            "Claude Beacons",
-            "Chi-Won Ho",
-            "Dong-Hyun Seul",
-            "Jung-Hoon Yi",
-            "Sung-Jin Noh",
-            "Joon-Ho Ja"
+            "Claude Beacons"
         ]
     },
     {
@@ -69,7 +56,7 @@
     {
         "Nombre": "Ragnah",
         "Liga": "Japon",
-        "Entrenador": "",
+        "Entrenador": "-",
         "Capitan": "Simeon",
         "Jugadores": [
             "Simeon"

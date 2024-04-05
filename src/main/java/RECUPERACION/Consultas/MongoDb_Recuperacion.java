@@ -22,7 +22,6 @@ import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Filters;
 import com.mongodb.client.result.DeleteResult;
 
-
 public class MongoDb_Recuperacion {
 
     public static void main(String[] args) {
@@ -495,20 +494,39 @@ public class MongoDb_Recuperacion {
             System.out.println("Introce la ruta del archivo de txt con los datos de JSON: ");
             String r = sc.nextLine(); // Se lee la ruta del archivo
 
-            JsonNode dataJsonNode = objectMapper.readTree(new FileReader(r));
-            List<Document> d = new ArrayList<>();
+            // Leer el archivo
+            File f = new File(r);
+            Scanner fileSc = new Scanner(f);
 
-            for (JsonNode objeto : dataJsonNode) {
-                Document doc = Document.parse(objeto.toString());
-                d.add(doc);
+            // Procesar cada campo/lina
+            while (fileSc.hasNext()) {
+                String l = fileSc.nextLine();
+
+                String[] data = l.split(","); // cada elemento separado por una coma
+
+                //Insertamos los datos del documento
+                Document dc = new Document();
+                dc.put("Nombre", data[0]);
+                dc.put("Posicion", data[1]);
+                dc.put("Equipo", data[2]);
+
+                c.insertOne(dc);
             }
-            c.insertMany(d);
+
             System.out.println("Datos insertados");
             m.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
 
+
+        Exception in thread "main" java.util.InputMismatchException
+        at java.base/java.util.Scanner.throwFor(Scanner.java:939)
+        at java.base/java.util.Scanner.next(Scanner.java:1594)
+        at java.base/java.util.Scanner.nextInt(Scanner.java:2258)
+        at java.base/java.util.Scanner.nextInt(Scanner.java:2212)
+        at RECUPERACION.Consultas.MongoDb_Recuperacion.InsertarDatosTXT(MongoDb_Recuperacion.java:469)
+        at RECUPERACION.Consultas.MongoDb_Recuperacion.main(MongoDb_Recuperacion.java:53)
     }
 
     private static void EquiposTxt(Scanner sc) {

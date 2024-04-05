@@ -14,15 +14,17 @@ import javax.print.Doc;
 import org.bson.Document;
 import org.bson.types.ObjectId;
 
+import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.databind.JsonNode;
 import com.mongodb.MongoClient;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Filters;
 import com.mongodb.client.result.DeleteResult;
-import com.mongodb.util.JSON;
-import com.mongodb.util.JSONParseException;
+
 
 public class MongoDb_Recuperacion {
+
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in); // Scanner para la lectura de datos.
 
@@ -484,34 +486,26 @@ public class MongoDb_Recuperacion {
 
     private static void JugadoresTxt(Scanner sc) {
         try {
-            //Conexion con MongoDB
-        MongoClient m = new MongoClient();
-        MongoDatabase db = m.getDatabase("IE_Recu");
+            // Conexion con MongoDB
+            MongoClient m = new MongoClient();
+            MongoDatabase db = m.getDatabase("IE_Recu");
 
-        MongoCollection<Document> c = db.getCollection("Jugadores"); //Coleccion
+            MongoCollection<Document> c = db.getCollection("Jugadores"); // Coleccion
 
-        System.out.println("Introce la ruta del archivo de txt con los datos de JSON: ");
-        String r = sc.nextLine(); //Se lee la ruta del archivo
+            System.out.println("Introce la ruta del archivo de txt con los datos de JSON: ");
+            String r = sc.nextLine(); // Se lee la ruta del archivo
 
-        //Analizamos el archivo JSO
-        JSON j = new JSON();
-        Object objJSON = j.parse(new FileReader(r));
-        JSONArray data = (JSONArray) objJSON;
+            JsonNode dataJsonNode = objectMapper.readTree(new FileReader(r));
+            List<Document> d = new ArrayList<>();
 
-        List<Document> doc = new ArrayList<>();
-
-        for (Object ob : data) {
-            Document document = Document.parse(ob.toString());
-            doc.add(document);
-        }
-
-        c.insertMany(doc);
-
-        System.out.println("Datos insertados");
-        
-        } catch (ParseException e) {
-            System.out.println("Error");
-        }catch(Exception e){
+            for (JsonNode objeto : dataJsonNode) {
+                Document doc = Document.parse(objeto.toString());
+                d.add(doc);
+            }
+            c.insertMany(d);
+            System.out.println("Datos insertados");
+            m.close();
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -521,12 +515,6 @@ public class MongoDb_Recuperacion {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'EquiposTxt'");
     }
-    
-    
-    
-    
-    
-    
-    
+
     // !End Program
 }

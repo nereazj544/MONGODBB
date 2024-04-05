@@ -1,0 +1,12 @@
+{"_id": {"$oid": "65edfaeb756ed183779a88dd"}, "Nombre": "Shawn", "Nacionalidad": "Japones", "Posiciones": " DF", "Elemento": "Aire", "Equipos": "Inazuma"}
+{"_id": {"$oid": "65edfaeb756ed183779a88de"}, "Nombre": "Byron", "Nacionalidad": "SurCoreano", "Posiciones": "MD", "Elemento": "Bosque", "Equipos": "DragonesFuego"}
+{"_id": {"$oid": "65edfaeb756ed183779a88df"}, "Nombre": "Claude", "Nacionalidad": "SurCoreano", "Posiciones": "DL", "Elemento": "Fuego", "Equipos": "DragonesFuego"}
+{"_id": {"$oid": "65edfaeb756ed183779a88e0"}, "Nombre": "Hakuryuu", "Nacionalidad": "Japones", "Posiciones": "DL", "Elemento": "Aire", "Equipos": "LuzEterna"}
+{"_id": {"$oid": "65edfaeb756ed183779a88e1"}, "Nombre": "Simeon", "Nacionalidad": "Desconocido", "Posiciones": "DL", "Elemento": "Mountain", "Equipos": "Ragnah"}
+{"_id": {"$oid": "65edfaeb756ed183779a88e2"}, "Nombre": "Xavier", "Nacionalidad": "Japones", "Posiciones": "MD", "Elemento": "Fuego", "Equipos": "Inazuma"}
+{"_id": {"$oid": "65edfaeb756ed183779a88e3"}, "Nombre": "Aitor", "Nacionalidad": "Japones", "Posiciones": "DF", "Elemento": "Bosque", "Equipos": "Raimon"}
+{"_id": {"$oid": "65edfaeb756ed183779a88e4"}, "Nombre": "JP", "Nacionalidad": "Japones", "Posiciones": "PR", "Elemento": "Montaña", "Equipos": "Raimon"}
+{"_id": {"$oid": "65edfaeb756ed183779a88e5"}, "Nombre": "Helio", "Nacionalidad": "Congo", "Posiciones": "PR", "Elemento": "Mountain", "Equipos": "Little"}
+{"_id": {"$oid": "65ef786f1807132791ca7902"}, "nombre": "Omega", "nacionalidad": "Japones", "posiciones": "DL", "elemento": "Mountain", "Equipo": "ProtocoloOmega3.0"}
+{"_id": {"$oid": "65f0d31e8436de4a422d7c34"}, "nombre": "Beta", "nacionalidad": "Desconocido", "posiciones": "DL", "elemento": "Aire", "Equipo": "ProtocoloOmega2.0"}
+{"_id": {"$oid": "65f1fa805bdd267142a13e2c"}, "nombre": "Nathan", "nacionalidad": "Japones", "posiciones": "DF", "elemento": "Aire", "Equipo": "InazuamJapon"}

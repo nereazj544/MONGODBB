@@ -1,0 +1,65 @@
+[
+    {
+        "Nombre": "Inazuma",
+        "Liga": "Japón",
+        "Entrenador": "Seymour Hillman",
+        "Capitan": "Mark Evans",
+        "Jugadores": [
+            "Mark Evans",
+            "Nathan Swift",
+            "Jack Wallside",
+            "Hurley Kane",
+            "Scott Banyan",
+            "Archer Hawkins",
+            "Caleb Stonewall",
+            "Shawn Froste",
+            "Axel Blaze",
+            "Austin Hobbes",
+            "Thor Stoutberg",
+            "Jude Sharp",
+            "David Samford",
+            "Kevin Dragonfly",
+            "Xavier Foster",
+            "Darren LaChance"
+        ]
+    },
+    {
+        "Nombre": "DragonesFuego",
+        "Liga": "Sur Corea",
+        "Entrenador": "Lee Jin Sung",
+        "Capitan": "Changsu Choi",
+        "Jugadores": [
+            "Byron Love",
+            "Bryce Whitingale",
+            "Claude Beacons"
+        ]
+    },
+    {
+        "Nombre": "Raimon",
+        "Liga": "Japon",
+        "Entrenador": "Mark Evans",
+        "Capitan": "Arion Sherwind",
+        "Jugadores": [
+            "JP",
+            "Aitor Cazador"
+        ]
+    },
+    {
+        "Nombre": "LuzEterna",
+        "Liga": "Japon",
+        "Entrenador": "Pinkus Mountbatten",
+        "Capitan": "Hakuryuu",
+        "Jugadores": [
+            "Hakuryuu"
+        ]
+    },
+    {
+        "Nombre": "Ragnah",
+        "Liga": "Japon",
+        "Entrenador": "-",
+        "Capitan": "Simeon",
+        "Jugadores": [
+            "Simeon"
+        ]
+    }
+]

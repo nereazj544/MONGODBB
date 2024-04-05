@@ -1,0 +1,68 @@
+[{
+    "Nombre": "Shawn",
+    "Nacionalidad": "Japones",
+    "Posiciones": " DF",
+    "Elemento": "Aire",
+    "Equipos": "Inazuma"
+},
+{
+    "Nombre": "Byron",
+    "Nacionalidad": "SurCoreano",
+    "Posiciones": "MD",
+    "Elemento": "Bosque",
+    "Equipos": "DragonesFuego"
+},
+
+{
+    "Nombre": "Claude",
+    "Nacionalidad": "SurCoreano",
+    "Posiciones": "DL",
+    "Elemento": "Fuego",
+    "Equipos": "DragonesFuego"
+},
+
+{
+    "Nombre": "Hakuryuu",
+    "Nacionalidad": "Japones",
+    "Posiciones": "DL",
+    "Elemento": "Aire",
+    "Equipos": "LuzEterna"
+},
+
+{
+    "Nombre": "Simeon",
+    "Nacionalidad": "Desconocido",
+    "Posiciones": "DL",
+    "Elemento": "Mountain",
+    "Equipos": "Ragnah"
+},
+{
+    "Nombre": "Xavier",
+    "Nacionalidad": "Japones",
+    "Posiciones": "MD",
+    "Elemento": "Fuego",
+    "Equipos": "Inazuma"
+},
+
+{
+    "Nombre": "Aitor",
+    "Nacionalidad": "Japones",
+    "Posiciones": "DF",
+    "Elemento": "Bosque",
+    "Equipos": "Raimon"
+},
+{
+    "Nombre": "JP",
+    "Nacionalidad": "Japones",
+    "Posiciones": "PR",
+    "Elemento": "Montaña",
+    "Equipos": "Raimon"
+},
+{
+    "Nombre": "Helio",
+    "Nacionalidad": "Congo",
+    "Posiciones": "PR",
+    "Elemento": "Mountain",
+    "Equipos": "Little"
+}
+]

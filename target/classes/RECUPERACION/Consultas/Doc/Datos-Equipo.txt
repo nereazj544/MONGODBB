@@ -1,0 +1,23 @@
+[
+    {
+        "Nombre":"ProtocoloOmega",
+        "Liga":"-",
+        "Entrenador":"William",
+        "Capitan":"Alfa",
+        "Jugadores": ["Alfa", "Mike", "Eco", "Lima"]
+    },
+    {
+        "Nombre":"ProtocoloOmega2",
+        "Liga":"-",
+        "Entrenador":"William",
+        "Capitan":"Beta",
+        "Jugadores": ["Beta", "Mike", "Eco", "Lima"]
+    },
+    {
+        "Nombre":"Gamma",
+        "Liga":"-",
+        "Entrenador":"Zanark",
+        "Capitan":"Gamma",
+        "Jugadores": ["Gamma", "Mike", "Eco", "Lima"]
+    }
+]

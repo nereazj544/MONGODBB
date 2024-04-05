@@ -460,16 +460,38 @@ public class MongoDb_Recuperacion {
      */
 
     private static void InsertarDatosTXT(Scanner sc) {
+
+
+        // Conexion con MongoDB
+        MongoClient m = new MongoClient();
+        MongoDatabase db = m.getDatabase("IE_Recu");
+
+        // Solicitamos la coleccion que queremos hacer las modificaciones
         while (true) {
             System.err.println("¿A que coleccion le quieres añadir datos? (POR ARCHIVO TXT)");
             System.out.println("1- Jugadores");
             System.out.println("2- Equipos");
             System.out.println("3- Salir");
 
-            int num = sc.nextInt();
+            String choice = sc.nextLine();
+
+            int num;
+            try {
+                num = Integer.parseInt(choice); // Conversion de la opcion a un nº entero
+                if (num < 1 || num > 3) {
+                    // Se verifica si el nº esta dentro del rango valido
+                    System.err.println("Error: Introduce un número válido (1, 2, o 3).");
+                    continue; // Se vuelve al inicio del bucle para solicitar nuevamente la opcion
+                }
+            } catch (NumberFormatException e) {
+                // Si se produce un error en el formato del nº
+                System.err.println("Error: Introduce un número válido (1, 2, o 3).");
+                continue;
+            }
+
             switch (num) {
                 case 1:
-                    JugadoresTxt(sc);
+                JugadoresTxt(sc);
                     break;
                 case 2:
                     EquiposTxt(sc);
@@ -481,6 +503,7 @@ public class MongoDb_Recuperacion {
                     break;
             }
         }
+        
     }
 
     private static void JugadoresTxt(Scanner sc) {
@@ -497,6 +520,8 @@ public class MongoDb_Recuperacion {
             // Leer el archivo
             File f = new File(r);
             Scanner fileSc = new Scanner(f);
+
+            sc.nextLine(); //Limpiamos despues de leer la opcion
 
             // Procesar cada campo/lina
             while (fileSc.hasNext()) {
@@ -515,18 +540,11 @@ public class MongoDb_Recuperacion {
 
             System.out.println("Datos insertados");
             m.close();
+            fileSc.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-
-        Exception in thread "main" java.util.InputMismatchException
-        at java.base/java.util.Scanner.throwFor(Scanner.java:939)
-        at java.base/java.util.Scanner.next(Scanner.java:1594)
-        at java.base/java.util.Scanner.nextInt(Scanner.java:2258)
-        at java.base/java.util.Scanner.nextInt(Scanner.java:2212)
-        at RECUPERACION.Consultas.MongoDb_Recuperacion.InsertarDatosTXT(MongoDb_Recuperacion.java:469)
-        at RECUPERACION.Consultas.MongoDb_Recuperacion.main(MongoDb_Recuperacion.java:53)
     }
 
     private static void EquiposTxt(Scanner sc) {

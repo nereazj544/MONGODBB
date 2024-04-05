@@ -2,20 +2,18 @@ package RECUPERACION.Consultas;
 
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileReader;
+
 import java.io.FileWriter;
-import java.text.ParseException;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import javax.print.Doc;
+
 
 import org.bson.Document;
 import org.bson.types.ObjectId;
 
-import com.fasterxml.jackson.core.JsonParser;
-import com.fasterxml.jackson.databind.JsonNode;
 import com.mongodb.MongoClient;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;

@@ -106,13 +106,14 @@ public class MongoDb_Recuperacion {
         // Especificacion de la ruta donde se va a guardar el JSON
         File file = new File("src\\main\\java\\RECUPERACION\\Consultas\\Doc\\Jugadores-MONGODB.json");
         FileWriter fic;
+        System.err.println("------------");
         System.out.println("Ruta donde se creara el archivo: " + file); // !Muestor la ruta donde se guardara el doc.
+        System.err.println("------------");
 
         try {
             fic = new FileWriter(file);
             BufferedWriter f = new BufferedWriter(fic);
 
-            System.err.println("------------");
             // los documentos de la coleccion de jugaodres y se escriben en el archivo JSON
             List<Document> c = jugadoresCollection.find().into(new ArrayList<Document>());
 

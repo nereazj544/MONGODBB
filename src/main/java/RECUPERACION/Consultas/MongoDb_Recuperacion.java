@@ -33,7 +33,7 @@ public class MongoDb_Recuperacion {
             System.out.println("1- Crear JSON de las coleciones llamasdas 'Jugadores' y 'equipos'");
             System.out.println("2- Visualizar datos.");
             System.out.println("3- Insertar datos por teclado.");
-            System.out.println("4- Insertar datos por archivo.");
+            System.out.println("4- Insertar datos por archivo. (NO FUNCIONA-EL CODIGO SE ENCUENTRA COMENTADO)");
             System.out.println("5- Borrar");
             System.out.println("6- Salir");
 
@@ -49,9 +49,9 @@ public class MongoDb_Recuperacion {
                 case 3:
                     InsertarDatosScanner(sc); // * Llama al metodo para insertar los datos
                     break;
-                case 4:
-                    InsertarDatosTXT(sc);
-                    break;
+                // case 4:
+                //     InsertarDatosTXT(sc);
+                //     break;
                 case 5:
                     Borrar(sc); // * Llama al metodo para borrar datos
                     break;
@@ -458,99 +458,107 @@ public class MongoDb_Recuperacion {
      * -------METODOS PARA INSERTAR DATOS (TXT) DE LAS COLECCIONES: JUGADORES Y
      * EQUIPOS-------
      */
-
-    private static void InsertarDatosTXT(Scanner sc) {
-
-
-        // Conexion con MongoDB
-        MongoClient m = new MongoClient();
-        MongoDatabase db = m.getDatabase("IE_Recu");
-
-        // Solicitamos la coleccion que queremos hacer las modificaciones
-        while (true) {
-            System.err.println("¿A que coleccion le quieres añadir datos? (POR ARCHIVO TXT)");
-            System.out.println("1- Jugadores");
-            System.out.println("2- Equipos");
-            System.out.println("3- Salir");
-
-            String choice = sc.nextLine();
-
-            int num;
-            try {
-                num = Integer.parseInt(choice); // Conversion de la opcion a un nº entero
-                if (num < 1 || num > 3) {
-                    // Se verifica si el nº esta dentro del rango valido
-                    System.err.println("Error: Introduce un número válido (1, 2, o 3).");
-                    continue; // Se vuelve al inicio del bucle para solicitar nuevamente la opcion
-                }
-            } catch (NumberFormatException e) {
-                // Si se produce un error en el formato del nº
-                System.err.println("Error: Introduce un número válido (1, 2, o 3).");
-                continue;
-            }
-
-            switch (num) {
-                case 1:
-                JugadoresTxt(sc);
-                    break;
-                case 2:
-                    EquiposTxt(sc);
-                    break;
-                case 3:
-                    System.exit(0);
-
-                default:
-                    break;
-            }
-        }
-        
-    }
-
-    private static void JugadoresTxt(Scanner sc) {
-        try {
-            // Conexion con MongoDB
-            MongoClient m = new MongoClient();
-            MongoDatabase db = m.getDatabase("IE_Recu");
-
-            MongoCollection<Document> c = db.getCollection("Jugadores"); // Coleccion
-
-            System.out.println("Introce la ruta del archivo de txt con los datos de JSON: ");
-            String r = sc.nextLine(); // Se lee la ruta del archivo
-
-            // Leer el archivo
-            File f = new File(r);
-            Scanner fileSc = new Scanner(f);
-
-            sc.nextLine(); //Limpiamos despues de leer la opcion
-
-            // Procesar cada campo/lina
-            while (fileSc.hasNext()) {
-                String l = fileSc.nextLine();
-
-                String[] data = l.split(","); // cada elemento separado por una coma
-
-                //Insertamos los datos del documento
-                Document dc = new Document();
-                dc.put("Nombre", data[0]);
-                dc.put("Posicion", data[1]);
-                dc.put("Equipo", data[2]);
-
-                c.insertOne(dc);
-            }
-
-            System.out.println("Datos insertados");
-            m.close();
-            fileSc.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-    }
-
-    private static void EquiposTxt(Scanner sc) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'EquiposTxt'");
-    }
+    /*
+     * 
+     * private static void InsertarDatosTXT(Scanner sc) {
+     * 
+     * // Conexion con MongoDB
+     * MongoClient m = new MongoClient();
+     * MongoDatabase db = m.getDatabase("IE_Recu");
+     * 
+     * // Solicitamos la coleccion que queremos hacer las modificaciones
+     * while (true) {
+     * System.err.
+     * println("¿A que coleccion le quieres añadir datos? (POR ARCHIVO TXT)");
+     * System.out.println("1- Jugadores");
+     * System.out.println("2- Equipos");
+     * System.out.println("3- Salir");
+     * 
+     * String choice = sc.nextLine();
+     * 
+     * int num;
+     * try {
+     * num = Integer.parseInt(choice); // Conversion de la opcion a un nº entero
+     * if (num < 1 || num > 3) {
+     * // Se verifica si el nº esta dentro del rango valido
+     * System.err.println("Error: Introduce un número válido (1, 2, o 3).");
+     * continue; // Se vuelve al inicio del bucle para solicitar nuevamente la
+     * opcion
+     * }
+     * } catch (NumberFormatException e) {
+     * // Si se produce un error en el formato del nº
+     * System.err.println("Error: Introduce un número válido (1, 2, o 3).");
+     * continue;
+     * }
+     * 
+     * switch (num) {
+     * case 1:
+     * JugadoresTxt(sc);
+     * break;
+     * case 2:
+     * EquiposTxt(sc);
+     * break;
+     * case 3:
+     * System.exit(0);
+     * 
+     * default:
+     * break;
+     * }
+     * }
+     * 
+     * }
+     * 
+     * private static void JugadoresTxt(Scanner sc) {
+     * try {
+     * // Conexion con MongoDB
+     * MongoClient m = new MongoClient();
+     * MongoDatabase db = m.getDatabase("IE_Recu");
+     * 
+     * MongoCollection<Document> c = db.getCollection("Jugadores"); // Coleccion
+     * 
+     * System.out.
+     * println("Introce la ruta del archivo de txt con los datos de JSON: ");
+     * String r = sc.nextLine(); // Se lee la ruta del archivo
+     * 
+     * // Leer el archivo
+     * File f = new File(r);
+     * Scanner fileSc = new Scanner(f);
+     * 
+     * sc.nextLine(); // Limpiamos despues de leer la opcion
+     * 
+     * // Procesar cada campo/lina
+     * while (fileSc.hasNext()) {
+     * String l = fileSc.nextLine();
+     * 
+     * String[] data = l.split(","); // cada elemento separado por una coma
+     * if (data.length >= 3) {
+     * // Insertamos los datos del documento
+     * Document dc = new Document();
+     * dc.put("Nombre", data[0]);
+     * dc.put("Posicion", data[1]);
+     * dc.put("Equipo", data[2]);
+     * 
+     * c.insertOne(dc);
+     * 
+     * } else {
+     * System.err.println("Error");
+     * }
+     * }
+     * 
+     * System.out.println("Datos insertados");
+     * m.close();
+     * fileSc.close();
+     * } catch (Exception e) {
+     * e.printStackTrace();
+     * }
+     * 
+     * }
+     * 
+     * private static void EquiposTxt(Scanner sc) {
+     * // TODO Auto-generated method stub
+     * throw new UnsupportedOperationException("Unimplemented method 'EquiposTxt'");
+     * }
+     */
 
     // !End Program
 }

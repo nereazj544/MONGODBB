@@ -33,21 +33,21 @@ public class MongoDb_Recuperacion {
 
             switch (e) {
                 case 1:
-                    CrearJSON(sc);
+                    CrearJSON(sc); // * Llama al metodo para crear archivos JSON
                     break;
                 case 2:
-                    VisualizarDatos(sc);
+                    VisualizarDatos(sc); // * Llama al metodo para visualizar los datos
                     break;
                 case 3:
-                    InsertarDatosScanner(sc);
+                    InsertarDatosScanner(sc); // * Llama al metodo para insertar los datos
                     break;
                 case 4:
-                    Borrar(sc);
+                    Borrar(sc); // * Llama al metodo para borrar datos
                     break;
 
                 case 5:
-                    System.err.println("Adios :)");
-                    System.exit(0);
+                    System.err.println("Adios :)"); // * Mensaje de despedida
+                    System.exit(0); // Salir del programa
                 default:
                     break;
             }
@@ -71,10 +71,10 @@ public class MongoDb_Recuperacion {
 
             switch (num) {
                 case 1:
-                    JugadoresJSON();
+                    JugadoresJSON(); // Llamada al metodo de Jugadores
                     break;
                 case 2:
-                    EquiposJSON();
+                    EquiposJSON(); // Llamada al metodo de Equipos
                     break;
                 case 3:
                     System.exit(0);
@@ -92,6 +92,7 @@ public class MongoDb_Recuperacion {
         MongoDatabase database = m.getDatabase("IE_Recu"); // !Se selecciona la Base de datos la cual se llama "IE_Recu"
         MongoCollection<Document> jugadoresCollection = database.getCollection("Jugadores"); // !La coleccion
 
+        // Especificacion de la ruta donde se va a guardar el JSON
         File file = new File("src\\main\\java\\RECUPERACION\\Consultas\\Doc\\Jugadores-MONGODB.json");
         FileWriter fic;
         System.out.println("Ruta donde se creara el archivo: " + file); // !Muestor la ruta donde se guardara el doc.
@@ -101,6 +102,7 @@ public class MongoDb_Recuperacion {
             BufferedWriter f = new BufferedWriter(fic);
 
             System.err.println("------------");
+            // los documentos de la coleccion de jugaodres y se escriben en el archivo JSON
             List<Document> c = jugadoresCollection.find().into(new ArrayList<Document>());
 
             for (int i = 0; i < c.size(); i++) {
@@ -108,24 +110,26 @@ public class MongoDb_Recuperacion {
                 f.write(c.get(i).toJson());
                 f.newLine();
             }
-            f.close();
+            f.close(); // Se cierra el BufferedWriter
 
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        m.close();
+        m.close(); // Se cierra la conexion
     }
 
     private static void EquiposJSON() {
 
+        // Conexion con MongoDB
         MongoClient m = new MongoClient();
         MongoDatabase database = m.getDatabase("IE_Recu");
         MongoCollection<Document> EquiposCollection = database.getCollection("Equipos");
 
+        // Especificamos la ruta donde se guardara el JSON
         File file = new File("src\\main\\java\\RECUPERACION\\Consultas\\Doc\\Equipos-MONGODB.json");
         FileWriter fic;
-        System.out.println("Ruta donde se creara el archivo: " + file);
+        System.out.println("Ruta donde se creara el archivo: " + file); // Mostramos donde se guardo
         try {
             fic = new FileWriter(file);
             BufferedWriter f = new BufferedWriter(fic);
@@ -138,13 +142,13 @@ public class MongoDb_Recuperacion {
                 f.write(c.get(i).toJson());
                 f.newLine();
             }
-            f.close();
+            f.close(); // Cerramos BufferedWriter
 
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        m.close();
+        m.close(); // Cerramos conexion MongoDB
     }
 
     /*
@@ -185,7 +189,11 @@ public class MongoDb_Recuperacion {
             MongoDatabase database = m.getDatabase("IE_Recu");
             // !Se selecciona la Base de datos la cual se llama "IE_Recu"
 
+            System.out.println("====================================");
             System.out.println("Datos a insertar: Nombre, Posicion, Equipo");
+            // Mostramos por pantalla los parametros que vamos a ir introduciendo por
+            // teclado
+
             System.out.println("Enter para continuar\n");
             String e1 = sc.nextLine();
 
@@ -206,10 +214,10 @@ public class MongoDb_Recuperacion {
             d.put("Equipos", equipo);
 
             MongoCollection<Document> c = database.getCollection("Jugadores");
-            c.insertOne(d);
+            c.insertOne(d); // Se insertan los nuevos campos dentro de la coleccion
             System.out.println("Insertado Correctamente.");
 
-            m.close();
+            m.close(); // Se cierra conexion con MongoDB
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -222,7 +230,11 @@ public class MongoDb_Recuperacion {
             MongoDatabase database = m.getDatabase("IE_Recu");
             // !Se selecciona la Base de datos la cual se llama "IE_Recu"
 
+            System.out.println("====================================");
             System.out.println("Datos a insertar: Nombre, Liga, Entrenador, Capitan, Jugadores");
+            // Mostramos por pantalla los parametros que vamos a ir introduciendo por
+            // teclado
+
             System.out.println("Enter para continuar");
             String e1 = sc.nextLine();
 
@@ -248,21 +260,24 @@ public class MongoDb_Recuperacion {
             d.put("Jugadores", jugadores);
 
             MongoCollection<Document> c = database.getCollection("Equipos");
-            c.insertOne(d);
+            c.insertOne(d); // Se insertan los nuevos campos dentro de la coleccion
             System.out.println("Insertado Correctamente.");
 
-            m.close();
+            m.close(); // Se cierra la conexion
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
+    /*
+     * -------METODOS PARA BORRAR DATOS-------
+     */
     private static void Borrar(Scanner sc) {
-
+        // Conexion con MongoDB
         MongoClient m = new MongoClient();
-
         MongoDatabase db = m.getDatabase("IE_Recu");
 
+        // Solicitamos la coleccion que queremos hacer las modificaciones
         while (true) {
             System.out.println("¿A qué colección le quieres borrar datos? (POR TECLADO)");
             System.out.println("1- Jugadores");
@@ -273,77 +288,52 @@ public class MongoDb_Recuperacion {
 
             int num;
             try {
-                num = Integer.parseInt(choice);
+                num = Integer.parseInt(choice); // Conversion de la opcion a un nº entero
                 if (num < 1 || num > 3) {
+                    // Se verifica si el nº esta dentro del rango valido
                     System.err.println("Error: Introduce un número válido (1, 2, o 3).");
-                    continue;
+                    continue; // Se vuelve al inicio del bucle para solicitar nuevamente la opcion
                 }
             } catch (NumberFormatException e) {
+                // Si se produce un error en el formato del nº
                 System.err.println("Error: Introduce un número válido (1, 2, o 3).");
                 continue;
             }
 
             switch (num) {
                 case 1:
-                    JugadoresBorrar(sc, db);
+                    JugadoresBorrar(sc, db); // Metodo de los jugadores
                     break;
                 case 2:
-                    EquiposBorrar(sc, db);
+                    EquiposBorrar(sc, db); // Metodo del equipo
                     break;
                 case 3:
-                    System.exit(0);
+                    System.exit(0); // salir
                 default:
                     System.out.println("Opción inválida.");
             }
         }
     }
-    // // try{
-    // MongoClient m = new MongoClient();
-    // MongoDatabase db = m.getDatabase("IE_Recu");
-
-    // while (true) {
-    // System.err.println("¿A que coleccion le quieres añadir datos? (POR
-    // TECLADO)");
-    // System.out.println("1- Jugadores");
-    // System.out.println("2- Equipos");
-    // System.out.println("3- Salir");
-
-    // int num = sc.nextInt();
-    // switch (num) {
-    // case 1:
-    // JugadoresBorrar(sc, db);
-    // break;
-    // case 2:
-    // EquiposBorrar(sc, db);
-    // break;
-    // case 3:
-    // System.exit(0);
-
-    // default:
-    // break;
-    // }
-    // }
-    // // }catch (NumberFormatException e){
-    // // e.printStackTrace();
-    // // }
 
     private static void JugadoresBorrar(Scanner sc, MongoDatabase db) {
         System.out.println("Introduce el ID del jugador que quieras borrar: ");
         MongoCollection<Document> jugadores = db.getCollection("Jugadores");
 
-        String id = sc.nextLine();
+        String id = sc.nextLine(); // Se lee el ID introduccido
 
         if (!isId(id)) {
+            // Se verifica si es valido, si no lo es se muestra el mensje de error
             System.err.println("No es valido");
 
         }
 
         DeleteResult dr = jugadores.deleteOne(Filters.eq("_id", new ObjectId(id)));
+        // Se elimina el jugador de la coleccion usando el ID
 
-        if (dr.getDeletedCount() == 1) {
+        if (dr.getDeletedCount() == 1) { // Si se ha elimidado el jugador correctamente
             System.out.println("Se ha borrado el jugador con el ID: " + id);
 
-        } else {
+        } else { // si no se ha encontrado ningun jugador
             System.out.println("No se ha encontrado ningun jugador");
         }
 
@@ -356,30 +346,37 @@ public class MongoDb_Recuperacion {
         String id = sc.nextLine();
 
         if (!isId(id)) {
+            // Verificamos el ID
             System.err.println("No es valido");
 
         }
 
         DeleteResult dr = Equipos.deleteOne(Filters.eq("_id", new ObjectId(id)));
-
+        // se elimina el equipo de la coleccion usando el ID
         if (dr.getDeletedCount() == 1) {
+            // Si se ha eliminado el equipo correctamente
             System.out.println("Se ha borrado el equipo con el ID: " + id);
 
-        } else {
+        } else {// si no se ha encontrado ningun equipos
             System.out.println("No se ha encontrado ningun equipo.");
         }
     }
 
+    // Metodo para verificar ID
     private static boolean isId(String id) {
         try {
             new ObjectId(id);
+            // Crear un objeto con el id proporcionado
 
-            return true;
+            return true; // Si no se procudce ningun error (Vamos, que si es valido el ID)
         } catch (IllegalArgumentException e) {
-            return false;
+            return false; // Si no es valido el ID
         }
     }
 
+    /*
+     * -------METODOS PARA VISUALIZAR DATOS-------
+     */
     private static void VisualizarDatos(Scanner sc) {
         while (true) {
             System.err.println("¿A que coleccion le quieres visualizar datos? ");
@@ -405,25 +402,40 @@ public class MongoDb_Recuperacion {
     }
 
     private static void JugadoresVis(Scanner sc) {
+        //Conexion con MongoDB
         MongoClient m = new MongoClient();
         MongoDatabase db = m.getDatabase("IE_Recu");
-        MongoCollection<Document> c = db.getCollection("Jugadores");
+        
+        MongoCollection<Document> c = db.getCollection("Jugadores"); //!Coleccion
+        
         List<Document> consulta = c.find().into(new ArrayList<Document>());
+        //Se hace la consulta para obtener todas las entradas de la coleccion pre seleccionada arriba ⤴️
+
+        //Se recorre las entrads obteniendo las consultas
         for (int i = 0; i < consulta.size(); i++) {
             Document Jugadores = consulta.get(i);
+            //Se obtienen los resultados de la coleccion: Jugadores
             System.out.println("===================================");
             System.out.println("Jugador: " + Jugadores.toString());
             System.out.println("===================================");
         }
     }
-
+    
     private static void EquiposVIs(Scanner sc) {
+        //Conexion con MongoDB
         MongoClient m = new MongoClient();
         MongoDatabase db = m.getDatabase("IE_Recu");
-        MongoCollection<Document> c = db.getCollection("Equipos");
+        
+        MongoCollection<Document> c = db.getCollection("Equipos"); //!Coleccion
+        
+        
         List<Document> consulta = c.find().into(new ArrayList<Document>());
+        //Se hace la consulta para obtener todas las entradas de la coleccion pre seleccionada arriba ⤴️
+        
+        //Se recorre las entrads obteniendo las consultas
         for (int i = 0; i < consulta.size(); i++) {
             Document Equipos = consulta.get(i);
+            //Se obtienen los resultados de la coleccion: Equipos
             System.out.println("===================================");
             System.out.println("Equipos: " + Equipos.toString());
             System.out.println("===================================");

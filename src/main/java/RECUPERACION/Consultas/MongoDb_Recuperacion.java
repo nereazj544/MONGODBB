@@ -477,8 +477,11 @@ public class MongoDb_Recuperacion {
     }
 
     private static void JugadoresTxt(Scanner sc) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'JugadoresTxt'");
+        //Conexion con MongoDB
+        MongoClient m = new MongoClient();
+        MongoDatabase db = m.getDatabase("IE_Recu");
+
+        MongoCollection<Document> c = db.getCollection("Jugadores"); //Coleccion
     }
 
     private static void EquiposTxt(Scanner sc) {

@@ -2,10 +2,14 @@ package RECUPERACION.Consultas;
 
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+
+import javax.print.Doc;
 
 import org.bson.Document;
 import org.bson.types.ObjectId;
@@ -15,6 +19,8 @@ import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Filters;
 import com.mongodb.client.result.DeleteResult;
+import com.mongodb.util.JSON;
+import com.mongodb.util.JSONParseException;
 
 public class MongoDb_Recuperacion {
     public static void main(String[] args) {
@@ -477,11 +483,38 @@ public class MongoDb_Recuperacion {
     }
 
     private static void JugadoresTxt(Scanner sc) {
-        //Conexion con MongoDB
+        try {
+            //Conexion con MongoDB
         MongoClient m = new MongoClient();
         MongoDatabase db = m.getDatabase("IE_Recu");
 
         MongoCollection<Document> c = db.getCollection("Jugadores"); //Coleccion
+
+        System.out.println("Introce la ruta del archivo de txt con los datos de JSON: ");
+        String r = sc.nextLine(); //Se lee la ruta del archivo
+
+        //Analizamos el archivo JSO
+        JSON j = new JSON();
+        Object objJSON = j.parse(new FileReader(r));
+        JSONArray data = (JSONArray) objJSON;
+
+        List<Document> doc = new ArrayList<>();
+
+        for (Object ob : data) {
+            Document document = Document.parse(ob.toString());
+            doc.add(document);
+        }
+
+        c.insertMany(doc);
+
+        System.out.println("Datos insertados");
+        
+        } catch (ParseException e) {
+            System.out.println("Error");
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+
     }
 
     private static void EquiposTxt(Scanner sc) {

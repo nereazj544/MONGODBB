@@ -26,8 +26,9 @@ public class MongoDb_Recuperacion {
             System.out.println("1- Crear JSON de las coleciones llamasdas 'Jugadores' y 'equipos'");
             System.out.println("2- Visualizar datos.");
             System.out.println("3- Insertar datos por teclado.");
-            System.out.println("4- Borrar");
-            System.out.println("5- Salir");
+            System.out.println("4- Insertar datos por archivo.");
+            System.out.println("5- Borrar");
+            System.out.println("6- Salir");
 
             int e = sc.nextInt(); // Cuando el usuario ponga el numero saltara el caso en el switch
 
@@ -42,10 +43,13 @@ public class MongoDb_Recuperacion {
                     InsertarDatosScanner(sc); // * Llama al metodo para insertar los datos
                     break;
                 case 4:
+                    InsertarDatosTXT(sc);
+                    break;
+                case 5:
                     Borrar(sc); // * Llama al metodo para borrar datos
                     break;
 
-                case 5:
+                case 6:
                     System.err.println("Adios :)"); // * Mensaje de despedida
                     System.exit(0); // Salir del programa
                 default:
@@ -402,45 +406,91 @@ public class MongoDb_Recuperacion {
     }
 
     private static void JugadoresVis(Scanner sc) {
-        //Conexion con MongoDB
+        // Conexion con MongoDB
         MongoClient m = new MongoClient();
         MongoDatabase db = m.getDatabase("IE_Recu");
-        
-        MongoCollection<Document> c = db.getCollection("Jugadores"); //!Coleccion
-        
-        List<Document> consulta = c.find().into(new ArrayList<Document>());
-        //Se hace la consulta para obtener todas las entradas de la coleccion pre seleccionada arriba ⤴️
 
-        //Se recorre las entrads obteniendo las consultas
+        MongoCollection<Document> c = db.getCollection("Jugadores"); // !Coleccion
+
+        List<Document> consulta = c.find().into(new ArrayList<Document>());
+        // Se hace la consulta para obtener todas las entradas de la coleccion pre
+        // seleccionada arriba ⤴️
+
+        // Se recorre las entrads obteniendo las consultas
         for (int i = 0; i < consulta.size(); i++) {
             Document Jugadores = consulta.get(i);
-            //Se obtienen los resultados de la coleccion: Jugadores
+            // Se obtienen los resultados de la coleccion: Jugadores
             System.out.println("===================================");
             System.out.println("Jugador: " + Jugadores.toString());
             System.out.println("===================================");
         }
     }
-    
+
     private static void EquiposVIs(Scanner sc) {
-        //Conexion con MongoDB
+        // Conexion con MongoDB
         MongoClient m = new MongoClient();
         MongoDatabase db = m.getDatabase("IE_Recu");
-        
-        MongoCollection<Document> c = db.getCollection("Equipos"); //!Coleccion
-        
-        
+
+        MongoCollection<Document> c = db.getCollection("Equipos"); // !Coleccion
+
         List<Document> consulta = c.find().into(new ArrayList<Document>());
-        //Se hace la consulta para obtener todas las entradas de la coleccion pre seleccionada arriba ⤴️
-        
-        //Se recorre las entrads obteniendo las consultas
+        // Se hace la consulta para obtener todas las entradas de la coleccion pre
+        // seleccionada arriba ⤴️
+
+        // Se recorre las entrads obteniendo las consultas
         for (int i = 0; i < consulta.size(); i++) {
             Document Equipos = consulta.get(i);
-            //Se obtienen los resultados de la coleccion: Equipos
+            // Se obtienen los resultados de la coleccion: Equipos
             System.out.println("===================================");
             System.out.println("Equipos: " + Equipos.toString());
             System.out.println("===================================");
         }
     }
 
+    /*
+     * -------METODOS PARA INSERTAR DATOS (TXT) DE LAS COLECCIONES: JUGADORES Y
+     * EQUIPOS-------
+     */
+
+    private static void InsertarDatosTXT(Scanner sc) {
+        while (true) {
+            System.err.println("¿A que coleccion le quieres añadir datos? (POR ARCHIVO TXT)");
+            System.out.println("1- Jugadores");
+            System.out.println("2- Equipos");
+            System.out.println("3- Salir");
+
+            int num = sc.nextInt();
+            switch (num) {
+                case 1:
+                    JugadoresTxt(sc);
+                    break;
+                case 2:
+                    EquiposTxt(sc);
+                    break;
+                case 3:
+                    System.exit(0);
+
+                default:
+                    break;
+            }
+        }
+    }
+
+    private static void JugadoresTxt(Scanner sc) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'JugadoresTxt'");
+    }
+
+    private static void EquiposTxt(Scanner sc) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'EquiposTxt'");
+    }
+    
+    
+    
+    
+    
+    
+    
     // !End Program
 }

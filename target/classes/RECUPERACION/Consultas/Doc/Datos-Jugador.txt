@@ -1,0 +1,17 @@
+[
+    {
+        "Nombre": "Alfa",
+        "Posicion": "DL",
+        "Equipo": "ProtocoloOmega"
+    },
+    {
+        "Nombre": "Beta",
+        "Posicion": "DL",
+        "Equipo": "ProtocoloOmega2"
+    },
+    {
+        "Nombre": "Gamma",
+        "Posicion": "DL",
+        "Equipo": "ProtocoloOmega3"
+    }
+]

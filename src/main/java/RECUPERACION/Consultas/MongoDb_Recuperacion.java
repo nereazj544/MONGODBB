@@ -1,17 +1,14 @@
-package RECUPERACION_MAYO.Consultas;
+package RECUPERACION.Consultas;
 
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import javax.print.Doc;
 
 import org.bson.Document;
-import org.bson.json.JsonParseException;
 import org.bson.types.ObjectId;
 
 import com.mongodb.MongoClient;
@@ -19,9 +16,8 @@ import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Filters;
 import com.mongodb.client.result.DeleteResult;
-import com.mongodb.client.result.UpdateResult;
 
-public class MongoDb_Mayo {
+public class MongoDb_Recuperacion {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in); // Scanner para la lectura de datos.
 
@@ -89,7 +85,7 @@ public class MongoDb_Mayo {
 
         // ! Conexion con MongoDB
         MongoClient m = new MongoClient();
-        MongoDatabase database = m.getDatabase("IEMayo"); // !Se selecciona la Base de datos la cual se llama "IEMayo"
+        MongoDatabase database = m.getDatabase("IE_Recu"); // !Se selecciona la Base de datos la cual se llama "IE_Recu"
         MongoCollection<Document> jugadoresCollection = database.getCollection("Jugadores"); // !La coleccion
 
         File file = new File("src\\main\\java\\RECUPERACION_MAYO\\Consultas\\Doc\\Jugadores-MONGODB.json");
@@ -120,7 +116,7 @@ public class MongoDb_Mayo {
     private static void EquiposJSON() {
 
         MongoClient m = new MongoClient();
-        MongoDatabase database = m.getDatabase("IEMayo");
+        MongoDatabase database = m.getDatabase("IE_Recu");
         MongoCollection<Document> EquiposCollection = database.getCollection("Equipos");
 
         File file = new File("src\\main\\java\\RECUPERACION_MAYO\\Consultas\\Doc\\Equipos-MONGODB.json");
@@ -182,8 +178,8 @@ public class MongoDb_Mayo {
         try {
             // ! Conexion con MongoDB
             MongoClient m = new MongoClient();
-            MongoDatabase database = m.getDatabase("IEMayo");
-            // !Se selecciona la Base de datos la cual se llama "IEMayo"
+            MongoDatabase database = m.getDatabase("IE_Recu");
+            // !Se selecciona la Base de datos la cual se llama "IE_Recu"
 
             System.out.println("Datos a insertar: Nombre, Posicion, Equipo");
             System.out.println("Enter para continuar\n");
@@ -219,8 +215,8 @@ public class MongoDb_Mayo {
         try {
             // ! Conexion con MongoDB
             MongoClient m = new MongoClient();
-            MongoDatabase database = m.getDatabase("IEMayo");
-            // !Se selecciona la Base de datos la cual se llama "IEMayo"
+            MongoDatabase database = m.getDatabase("IE_Recu");
+            // !Se selecciona la Base de datos la cual se llama "IE_Recu"
 
             System.out.println("Datos a insertar: Nombre, Liga, Entrenador, Capitan, Jugadores");
             System.out.println("Enter para continuar");
@@ -261,7 +257,7 @@ public class MongoDb_Mayo {
 
         MongoClient m = new MongoClient(); 
 
-        MongoDatabase db = m.getDatabase("IEMayo");
+        MongoDatabase db = m.getDatabase("IE_Recu");
 
         while (true) {
             System.out.println("¿A qué colección le quieres borrar datos? (POR TECLADO)");
@@ -299,7 +295,7 @@ public class MongoDb_Mayo {
     }
     // // try{
     // MongoClient m = new MongoClient();
-    // MongoDatabase db = m.getDatabase("IEMayo");
+    // MongoDatabase db = m.getDatabase("IE_Recu");
 
     // while (true) {
     // System.err.println("¿A que coleccion le quieres añadir datos? (POR

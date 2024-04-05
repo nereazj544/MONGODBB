@@ -9,8 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-
-
 import org.bson.Document;
 import org.bson.types.ObjectId;
 
@@ -48,8 +46,8 @@ public class MongoDb_Recuperacion {
                     InsertarDatosScanner(sc); // * Llama al metodo para insertar los datos
                     break;
                 // case 4:
-                //     InsertarDatosTXT(sc);
-                //     break;
+                // InsertarDatosTXT(sc);
+                // break;
                 case 5:
                     Borrar(sc); // * Llama al metodo para borrar datos
                     break;

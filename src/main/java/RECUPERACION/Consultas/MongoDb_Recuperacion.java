@@ -32,8 +32,7 @@ public class MongoDb_Recuperacion {
             System.out.println("\n==========================");
             System.out.println("Selecciona una opcion:");
             System.out.println("==========================\n");
-            System.out.println(
-                    "1- Crear base de datos ('IE_Recu') y las dos colecciones llamadas: 'Jugadores' y 'Equipos'");
+            System.out.println("1- Crear base de datos ('IE_Recu') y las dos colecciones llamadas: 'Jugadores' y 'Equipos'");
             System.out.println("2- Insertar datos desde un archivo JSON.");
             System.out.println("3- Insertar datos por teclado.");
             System.out.println("4- Borrar ID.");
@@ -120,7 +119,7 @@ public class MongoDb_Recuperacion {
                                                      // crea.
         db.createCollection("Jugadores"); // Creacion de la coleccion.
 
-        System.out.println("Se ha generado la coleccion de: " + texto + " dentro de la database: IE_Recu.\n");
+        System.err.println("Se ha generado la coleccion de: " + texto + " dentro de la database: IE_Recu.\n");
         // Confirmamos que se ha creado la colleccion.
 
         m.close();
@@ -136,7 +135,7 @@ public class MongoDb_Recuperacion {
         db.createCollection("Equipos");
         // Creacion de la collection
 
-        System.out.println("Se ha generado la coleccion de: " + texto + " dentro de la database: IE_Recu.");
+        System.err.println("Se ha generado la coleccion de: " + texto + " dentro de la database: IE_Recu.");
 
         m.close();
     }

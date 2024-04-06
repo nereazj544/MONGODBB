@@ -275,6 +275,7 @@ public class MongoDb_Recuperacion {
         while (true) { // Se usa un While para preguntarle al usuario que cual coleccion quiere que se
                        // pase a JSON
             System.out.println("¿Para que coleccion quiere hacer el JSON?\n");
+            System.out.println("=================");
             System.out.println("1- Jugadores");
             System.out.println("2- Equipos");
             System.out.println("3- Salir");
@@ -380,6 +381,7 @@ public class MongoDb_Recuperacion {
     private static void InsertarDatosScanner(Scanner sc) {
         while (true) {
             System.err.println("¿A que coleccion le quieres añadir datos? (POR TECLADO)");
+            System.out.println("=================");
             System.out.println("1- Jugadores");
             System.out.println("2- Equipos");
             System.out.println("3- Salir");
@@ -504,9 +506,11 @@ public class MongoDb_Recuperacion {
         // Solicitamos la coleccion que queremos hacer las modificaciones
         while (true) {
             System.out.println("¿A qué colección le quieres borrar datos? (POR TECLADO)");
+            System.out.println("=================");
             System.out.println("1- Jugadores");
             System.out.println("2- Equipos");
             System.out.println("3- Salir");
+            System.out.println("=================");
             System.out.print("Escribe tu opcion: ");
 
             String choice = sc.nextLine();
@@ -537,6 +541,7 @@ public class MongoDb_Recuperacion {
                 default:
                     System.out.println("Opción inválida.");
             }
+            m.close();
         }
     }
 
@@ -605,6 +610,7 @@ public class MongoDb_Recuperacion {
     private static void VisualizarDatos(Scanner sc) {
         while (true) {
             System.err.println("¿A que coleccion le quieres visualizar datos? ");
+            System.out.println("=================");
             System.out.println("1- Jugadores");
             System.out.println("2- Equipos");
             System.out.println("3- Salir");
@@ -647,6 +653,7 @@ public class MongoDb_Recuperacion {
             System.out.println("Jugador: " + Jugadores.toString());
             System.out.println("===================================");
         }
+        m.close();
     }
 
     private static void EquiposVIs(Scanner sc) {
@@ -668,6 +675,7 @@ public class MongoDb_Recuperacion {
             System.out.println("Equipos: " + Equipos.toString());
             System.out.println("===================================");
         }
+        m.close();
     }
 
     // !End Program

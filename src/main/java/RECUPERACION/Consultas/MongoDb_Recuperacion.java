@@ -498,7 +498,7 @@ public class MongoDb_Recuperacion {
 	 * -------METODOS PARA BORRAR DATOS-------
 	 */
 	private static void Borrar(Scanner sc) {
-		System.out.println("Enrter");
+		
 		String enter = sc.nextLine();
 
 		// Solicitamos la coleccion que queremos hacer las modificaciones

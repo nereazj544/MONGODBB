@@ -13,6 +13,8 @@ import java.util.Scanner;
 
 import org.bson.Document;
 import org.bson.types.ObjectId;
+
+//! Esta biblioteca es para que se pueda implementar bien los archivos de JSON. 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -119,7 +121,7 @@ public class MongoDb_Recuperacion {
                                                      // crea.
         db.createCollection("Jugadores"); // Creacion de la coleccion.
 
-        System.err.println("Se ha generado la coleccion de: " + texto + " dentro de la database: IE_Recu.\n");
+        System.out.println("\nSe ha generado la coleccion de: " + texto + " dentro de la database: IE_Recu.\n");
         // Confirmamos que se ha creado la colleccion.
 
         m.close();
@@ -135,7 +137,7 @@ public class MongoDb_Recuperacion {
         db.createCollection("Equipos");
         // Creacion de la collection
 
-        System.err.println("Se ha generado la coleccion de: " + texto + " dentro de la database: IE_Recu.");
+        System.out.println("\nSe ha generado la coleccion de: " + texto + " dentro de la database: IE_Recu.");
 
         m.close();
     }
@@ -214,7 +216,7 @@ public class MongoDb_Recuperacion {
             m.close();
             bf.close();
 
-            System.err.println("SE HAN AÑADIDO LOS DATOS CORRECTAMENTE"); // Mensaje de confirmacion
+            System.out.println("\nSE HAN AÑADIDO LOS DATOS CORRECTAMENTE"); // Mensaje de confirmacion
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -256,7 +258,7 @@ public class MongoDb_Recuperacion {
             m.close();
             bf.close();
 
-            System.err.println("SE HAN AÑADIDO LOS DATOS CORRECTAMENTE"); // Mensaje de confirmacion
+            System.out.println("\nSE HAN AÑADIDO LOS DATOS CORRECTAMENTE"); // Mensaje de confirmacion
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -309,9 +311,9 @@ public class MongoDb_Recuperacion {
         // Especificacion de la ruta donde se va a guardar el JSON
         File file = new File("src\\main\\java\\RECUPERACION\\Consultas\\Doc\\Jugadores-MONGODB.json");
         FileWriter fic;
-        System.err.println("------------");
+        System.out.println("\n------------");
         System.out.println("Ruta donde se creara el archivo: " + file); // !Muestor la ruta donde se guardara el doc.
-        System.err.println("------------");
+        System.out.println("------------\n");
 
         try {
             fic = new FileWriter(file);
@@ -352,7 +354,7 @@ public class MongoDb_Recuperacion {
             fic = new FileWriter(file);
             BufferedWriter f = new BufferedWriter(fic);
 
-            System.err.println("------------");
+            
             List<Document> c = EquiposCollection.find().into(new ArrayList<Document>());
             System.out.println("=================");
             System.out.println("ELEMENTOS A AÑADIR: ");
@@ -440,7 +442,7 @@ public class MongoDb_Recuperacion {
 
             MongoCollection<Document> c = database.getCollection("Jugadores");
             c.insertOne(d); // Se insertan los nuevos campos dentro de la coleccion
-            System.out.println("Insertado Correctamente.");
+            System.out.println("\nInsertado Correctamente.");
 
             m.close(); // Se cierra conexion con MongoDB
         } catch (Exception e) {
@@ -486,7 +488,7 @@ public class MongoDb_Recuperacion {
 
             MongoCollection<Document> c = database.getCollection("Equipos");
             c.insertOne(d); // Se insertan los nuevos campos dentro de la coleccion
-            System.out.println("Insertado Correctamente.");
+            System.out.println("\nInsertado Correctamente.");
 
             m.close(); // Se cierra la conexion
         } catch (Exception e) {
@@ -545,7 +547,7 @@ public class MongoDb_Recuperacion {
     }
 
     private static void JugadoresBorrar(Scanner sc, MongoDatabase db) {
-        System.out.println("Introduce el ID del jugador que quieras borrar: ");
+        System.out.println("\nIntroduce el ID del jugador que quieras borrar: ");
         MongoCollection<Document> jugadores = db.getCollection("Jugadores");
 
         String id = sc.nextLine(); // Se lee el ID introduccido
@@ -560,7 +562,7 @@ public class MongoDb_Recuperacion {
         // Se elimina el jugador de la coleccion usando el ID
 
         if (dr.getDeletedCount() == 1) { // Si se ha elimidado el jugador correctamente
-            System.out.println("Se ha borrado el jugador con el ID: " + id);
+            System.out.println("\nSe ha borrado el jugador con el ID: " + id);
 
         } else { // si no se ha encontrado ningun jugador
             System.out.println("No se ha encontrado ningun jugador");
@@ -571,7 +573,7 @@ public class MongoDb_Recuperacion {
     private static void EquiposBorrar(Scanner sc, MongoDatabase db) {
         MongoCollection<Document> Equipos = db.getCollection("Equipos");
 
-        System.out.println("Introduce el ID del equipo que quieras borrar: ");
+        System.out.println("\nIntroduce el ID del equipo que quieras borrar: ");
         String id = sc.nextLine();
 
         if (!isId(id)) {
@@ -584,7 +586,7 @@ public class MongoDb_Recuperacion {
         // se elimina el equipo de la coleccion usando el ID
         if (dr.getDeletedCount() == 1) {
             // Si se ha eliminado el equipo correctamente
-            System.out.println("Se ha borrado el equipo con el ID: " + id);
+            System.out.println("\nSe ha borrado el equipo con el ID: " + id);
 
         } else {// si no se ha encontrado ningun equipos
             System.out.println("No se ha encontrado ningun equipo.");

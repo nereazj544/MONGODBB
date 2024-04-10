@@ -24,6 +24,10 @@ import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Filters;
 import com.mongodb.client.result.DeleteResult;
 
+
+/**
+ * @author Nerea Zapatero Jara 
+ */
 public class MongoDb_Recuperacion {
 
 	public static void main(String[] args) {
@@ -34,8 +38,7 @@ public class MongoDb_Recuperacion {
 			System.out.println("\n==========================");
 			System.out.println("Selecciona una opcion:");
 			System.out.println("==========================\n");
-			System.out.println(
-					"1- Crear base de datos ('IE_Recu') y las dos colecciones llamadas: 'Jugadores' y 'Equipos'");
+			System.out.println("1- Crear base de datos ('IE_Recu') y las dos colecciones llamadas: 'Jugadores' y 'Equipos'");
 			System.out.println("2- Insertar datos desde un archivo JSON.");
 			System.out.println("3- Insertar datos por teclado.");
 			System.out.println("4- Borrar ID.");
@@ -51,7 +54,7 @@ public class MongoDb_Recuperacion {
 				CrearBD(sc); // * Llama al metodo para crear la Database
 				break;
 			case 2:
-				JSONDatos(sc);
+				JSONDatos(sc); //* Llama al metodo para insertar datos con JSON
 				break;
 
 			case 5:
@@ -196,7 +199,55 @@ public class MongoDb_Recuperacion {
 
 			StringBuilder stb = new StringBuilder();
 			String linea;
+			
+			
+			System.out.println("DATOS INSERTADOS: ");
+			while ((linea = bf.readLine()) != null) {
+				System.out.println(linea); //Visualizamos las lineas que estan dentro del archivo JSON
+				stb.append(linea);
+			}
 
+			// Parseo del JSON utilizando la biblioteca "org.json"
+			JSONArray jsonArray = new JSONArray(stb.toString()); // JSON = Array
+			for (int i = 0; i < jsonArray.length(); i++) {
+				System.out.println("DATOS INSERTADOS: ");
+				JSONObject jsonObject = jsonArray.getJSONObject(i); // Obtenemos cada obj Json del Array
+
+				// Convertimos cada objeto JSON en un doc BSON
+				Document dc = Document.parse(jsonObject.toString());
+
+				c.insertOne(dc);
+				// INsertamos el documento en la coleccion
+			}
+			m.close();
+			bf.close();
+
+			System.out.println("\nSE HAN AÑADIDO LOS DATOS CORRECTAMENTE"); // Mensaje de confirmacion
+
+		} catch (FileNotFoundException e) {
+			System.out.println("ERROR: EN EL ARCHIVO\n");
+			e.printStackTrace();
+		} catch (IOException e) {
+			System.out.println("ERROR: \n");
+			e.printStackTrace();
+		}
+
+	}
+
+	private static void EquiposJSONDatos() {
+		try {
+			FileReader fr = new FileReader(new File("src\\main\\java\\RECUPERACION\\Recursos\\Equipos.json"));
+			BufferedReader bf = new BufferedReader(fr);
+
+			// !CONEXION MONGODB
+			MongoClient m = new MongoClient();
+			MongoDatabase db = m.getDatabase("IE_Recu");
+			MongoCollection<Document> c = db.getCollection("Equipos");
+
+			StringBuilder stb = new StringBuilder();
+			String linea;
+
+			System.out.println("DATOS INSERTADOS: "); 
 			while ((linea = bf.readLine()) != null) {
 				System.out.println(linea);
 				stb.append(linea);
@@ -222,48 +273,7 @@ public class MongoDb_Recuperacion {
 			System.out.println("ERROR: EN EL ARCHIVO\n");
 			e.printStackTrace();
 		} catch (IOException e) {
-			e.printStackTrace();
-		}
-
-	}
-
-	private static void EquiposJSONDatos() {
-		try {
-			FileReader fr = new FileReader(new File("src\\main\\java\\RECUPERACION\\Recursos\\Equipos.json"));
-			BufferedReader bf = new BufferedReader(fr);
-
-			// !CONEXION MONGODB
-			MongoClient m = new MongoClient();
-			MongoDatabase db = m.getDatabase("IE_Recu");
-			MongoCollection<Document> c = db.getCollection("Equipos");
-
-			StringBuilder stb = new StringBuilder();
-			String linea;
-
-			while ((linea = bf.readLine()) != null) {
-				System.out.println(linea);
-				stb.append(linea);
-			}
-
-			// Parseo del JSON utilizando la biblioteca "org.json"
-			JSONArray jsonArray = new JSONArray(stb.toString()); // JSON = Array
-			for (int i = 0; i < jsonArray.length(); i++) {
-				JSONObject jsonObject = jsonArray.getJSONObject(i); // Obtenemos cada obj Json del Array
-
-				// Convertimos cada objeto JSON en un doc BSON
-				Document dc = Document.parse(jsonObject.toString());
-
-				c.insertOne(dc);
-				// INsertamos el documento en la coleccion
-			}
-			m.close();
-			bf.close();
-
-			System.out.println("\nSE HAN AÑADIDO LOS DATOS CORRECTAMENTE"); // Mensaje de confirmacion
-
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
+			System.out.println("ERROR: \n");
 			e.printStackTrace();
 		}
 

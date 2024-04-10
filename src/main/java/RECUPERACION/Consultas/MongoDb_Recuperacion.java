@@ -30,14 +30,18 @@ import com.mongodb.client.result.DeleteResult;
 public class MongoDb_Recuperacion {
 
 	public static void main(String[] args) {
-		Scanner sc = new Scanner(System.in); // Scanner para la lectura de datos.
 
+		// Scanner para la lectura de datos.
+		Scanner sc = new Scanner(System.in);
+
+		// While para que te muestre las opciones
 		while (true) {
 
 			System.out.println("\n==========================");
 			System.out.println("Selecciona una opcion:");
 			System.out.println("==========================\n");
-			System.out.println("1- Crear base de datos ('IE_Recu') y las dos colecciones llamadas: 'Jugadores' y 'Equipos'");
+			System.out.println(
+					"1- Crear base de datos ('IE_Recu') y las dos colecciones llamadas: 'Jugadores' y 'Equipos'");
 			System.out.println("2- Insertar datos desde un archivo JSON.");
 			System.out.println("3- Insertar datos por teclado.");
 			System.out.println("4- Borrar ID.");
@@ -48,6 +52,7 @@ public class MongoDb_Recuperacion {
 
 			int e = sc.nextInt(); // Cuando el usuario ponga el numero saltara el caso en el switch
 
+			//Switch para llamar a los metods
 			switch (e) {
 			case 1:
 				CrearBD(sc); // * Llama al metodo para crear la Database
@@ -74,7 +79,7 @@ public class MongoDb_Recuperacion {
 				System.exit(0); // Salir del programa
 			default:
 				System.out.println("Opcion no valida");
-				
+
 			}
 
 		}
@@ -740,7 +745,7 @@ public class MongoDb_Recuperacion {
 				System.err.println("Error: Introduce un número válido (1, 2, o 3).");
 				continue;
 			}
-			
+
 			try {
 				switch (num) {
 				case 1:
@@ -759,8 +764,7 @@ public class MongoDb_Recuperacion {
 				System.out.println("ERROR: \n");
 				en.printStackTrace();
 			}
-			
-			
+
 		}
 	}
 

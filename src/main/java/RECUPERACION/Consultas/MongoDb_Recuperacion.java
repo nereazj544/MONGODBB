@@ -24,9 +24,8 @@ import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Filters;
 import com.mongodb.client.result.DeleteResult;
 
-
 /**
- * @author Nerea Zapatero Jara 
+ * @author Nerea Zapatero Jara
  */
 public class MongoDb_Recuperacion {
 
@@ -54,7 +53,7 @@ public class MongoDb_Recuperacion {
 				CrearBD(sc); // * Llama al metodo para crear la Database
 				break;
 			case 2:
-				JSONDatos(sc); //* Llama al metodo para insertar datos con JSON
+				JSONDatos(sc); // * Llama al metodo para insertar datos con JSON
 				break;
 
 			case 5:
@@ -74,7 +73,8 @@ public class MongoDb_Recuperacion {
 				System.err.println("Adios :)"); // * Mensaje de despedida
 				System.exit(0); // Salir del programa
 			default:
-				break;
+				System.out.println("Opcion no valida");
+				
 			}
 
 		}
@@ -85,6 +85,7 @@ public class MongoDb_Recuperacion {
 	 * -------METODOS PARA CREAR DATABASE-------
 	 */
 	private static void CrearBD(Scanner sc) {
+		String s = sc.nextLine();
 		while (true) {
 			System.out.println("¿Que coleccion quieres crear?");
 			System.out.println("=================");
@@ -94,22 +95,41 @@ public class MongoDb_Recuperacion {
 			System.out.println("=================");
 			System.out.print("Escribe tu opcion: ");
 
-			int num = sc.nextInt();
+			String opcion = sc.nextLine();
+			int num;
 
-			switch (num) {
-			case 1:
-				JugadoresCollection();
-				break;
-			case 2:
-				EquiposCollection();
-				break;
-			case 3:
-				System.out.println("FINALIZA EL PROGRAMA");
-				System.exit(0);
-				break;
-			default:
-				System.err.println("Opcion invalida.");
+			try {
+				num = Integer.parseInt(opcion); // Conversion de la opcion a un nº entero
+				if (num < 1 || num > 3) {
+					// Se verifica si el nº esta dentro del rango valido
+					System.err.println("Error: Introduce un número válido (1, 2, o 3).");
+					continue; // Se vuelve al inicio del bucle para solicitar nuevamente la opcion
+				}
+			} catch (NumberFormatException e) {
+				System.err.println("Error: Introduce un número válido (1, 2, o 3).");
+				continue;
 			}
+
+			try {
+				switch (num) {
+				case 1:
+					JugadoresCollection();
+					break;
+				case 2:
+					EquiposCollection();
+					break;
+				case 3:
+					System.out.println("FINALIZA EL PROGRAMA");
+					System.exit(0);
+					break;
+				default:
+					System.err.println("Opcion invalida.");
+				}
+			} catch (Exception e) {
+				System.out.println("Error: \n");
+				e.printStackTrace();
+			}
+
 		}
 
 	}
@@ -152,6 +172,7 @@ public class MongoDb_Recuperacion {
 	 */
 
 	private static void JSONDatos(Scanner sc) {
+		String e = sc.nextLine();
 		while (true) {
 			System.out.println("¿Que coleccion quieres añadirle datos?");
 			System.out.println("=================");
@@ -161,21 +182,38 @@ public class MongoDb_Recuperacion {
 			System.out.println("=================");
 			System.out.print("Escribe tu opcion: ");
 
-			int num = sc.nextInt();
+			String opcion = sc.nextLine();
+			int num;
 
-			switch (num) {
-			case 1:
-				JugadoresJSONDatos();
-				break;
-			case 2:
-				EquiposJSONDatos();
-				break;
-			case 3:
-				System.out.println("FINALIZA EL PROGRAMA");
-				System.exit(0);
-				break;
-			default:
-				System.err.println("Opcion invalida.");
+			try {
+				num = Integer.parseInt(opcion); // Conversion de la opcion a un nº entero
+				if (num < 1 || num > 3) {
+					// Se verifica si el nº esta dentro del rango valido
+					System.err.println("Error: Introduce un número válido (1, 2, o 3).");
+					continue; // Se vuelve al inicio del bucle para solicitar nuevamente la opcion
+				}
+			} catch (NumberFormatException e2) {
+				System.err.println("Error: Introduce un número válido (1, 2, o 3).");
+				continue;
+			}
+
+			try {
+				switch (num) {
+				case 1:
+					JugadoresJSONDatos();
+					break;
+				case 2:
+					EquiposJSONDatos();
+					break;
+				case 3:
+					System.out.println("FINALIZA EL PROGRAMA");
+					System.exit(0);
+					break;
+				default:
+					System.err.println("Opcion invalida.");
+				}
+			} catch (Exception e2) {
+				// TODO: handle exception
 			}
 		}
 
@@ -199,18 +237,16 @@ public class MongoDb_Recuperacion {
 
 			StringBuilder stb = new StringBuilder();
 			String linea;
-			
-			
+
 			System.out.println("DATOS INSERTADOS: ");
 			while ((linea = bf.readLine()) != null) {
-				System.out.println(linea); //Visualizamos las lineas que estan dentro del archivo JSON
+				System.out.println(linea); // Visualizamos las lineas que estan dentro del archivo JSON
 				stb.append(linea);
 			}
 
 			// Parseo del JSON utilizando la biblioteca "org.json"
 			JSONArray jsonArray = new JSONArray(stb.toString()); // JSON = Array
 			for (int i = 0; i < jsonArray.length(); i++) {
-				System.out.println("DATOS INSERTADOS: ");
 				JSONObject jsonObject = jsonArray.getJSONObject(i); // Obtenemos cada obj Json del Array
 
 				// Convertimos cada objeto JSON en un doc BSON
@@ -247,7 +283,7 @@ public class MongoDb_Recuperacion {
 			StringBuilder stb = new StringBuilder();
 			String linea;
 
-			System.out.println("DATOS INSERTADOS: "); 
+			System.out.println("DATOS INSERTADOS: ");
 			while ((linea = bf.readLine()) != null) {
 				System.out.println(linea);
 				stb.append(linea);
@@ -284,6 +320,8 @@ public class MongoDb_Recuperacion {
 	 * -------METODOS PARA CREAR JSON DE LAS COLECCIONES: JUGADORES Y EQUIPOS-------
 	 */
 	private static void CrearJSON(Scanner sc) {
+
+		String e = sc.nextLine();
 		while (true) { // Se usa un While para preguntarle al usuario que cual coleccion quiere que se
 						// pase a JSON
 			System.out.println("¿Para que coleccion quiere hacer el JSON?\n");
@@ -294,21 +332,43 @@ public class MongoDb_Recuperacion {
 			System.out.println("=================");
 			System.out.print("Escribe tu opcion: ");
 
-			int num = sc.nextInt();
+			String choice = sc.nextLine();
 
-			switch (num) {
-			case 1:
-				JugadoresJSON(); // Llamada al metodo de Jugadores
-				break;
-			case 2:
-				EquiposJSON(); // Llamada al metodo de Equipos
-				break;
-			case 3:
-				System.exit(0);
+			int num;
+			try {
 
-			default:
-				System.err.println("Error");
+				num = Integer.parseInt(choice); // Conversion de la opcion a un nº entero
+				if (num < 1 || num > 3) {
+					// Se verifica si el nº esta dentro del rango valido
+					System.err.println("Error: Introduce un número válido (1, 2, o 3).");
+					continue; // Se vuelve al inicio del bucle para solicitar nuevamente la opcion
+				}
+			} catch (NumberFormatException ne) {
+				// Si se produce un error en el formato del nº
+				System.err.println("Error: Introduce un número válido (1, 2, o 3).");
+				continue;
 			}
+
+			try {
+
+				switch (num) {
+				case 1:
+					JugadoresJSON(); // Metodo de los jugadores
+					break;
+				case 2:
+					EquiposJSON(); // Metodo del equipo
+					break;
+				case 3:
+					System.exit(0); // salir
+				default:
+					System.out.println("Opción inválida.");
+				}
+//		            m.close();
+			} catch (Exception en) {
+				System.out.println("ERROR: \n");
+				en.printStackTrace();
+			}
+
 		}
 	}
 
@@ -344,6 +404,7 @@ public class MongoDb_Recuperacion {
 			f.close(); // Se cierra el BufferedWriter
 
 		} catch (Exception e) {
+			System.out.println("Error: \n");
 			e.printStackTrace();
 		}
 
@@ -377,6 +438,7 @@ public class MongoDb_Recuperacion {
 			f.close(); // Cerramos BufferedWriter
 
 		} catch (Exception e) {
+			System.out.println("Error: \n");
 			e.printStackTrace();
 		}
 
@@ -390,6 +452,7 @@ public class MongoDb_Recuperacion {
 
 	// ! Scanner = Datos
 	private static void InsertarDatosScanner(Scanner sc) {
+		String s = sc.nextLine();
 		while (true) {
 			System.err.println("¿A que coleccion le quieres añadir datos? (POR TECLADO)");
 			System.out.println("=================");
@@ -399,19 +462,40 @@ public class MongoDb_Recuperacion {
 			System.out.println("=================");
 			System.out.print("Escribe tu opcion: ");
 
-			int num = sc.nextInt();
-			switch (num) {
-			case 1:
-				JugadoresSc(sc);
-				break;
-			case 2:
-				EquiposSc(sc);
-				break;
-			case 3:
-				System.exit(0);
+			String choice = sc.nextLine();
+			int num;
 
-			default:
-				break;
+			try {
+
+				num = Integer.parseInt(choice); // Conversion de la opcion a un nº entero
+				if (num < 1 || num > 3) {
+					// Se verifica si el nº esta dentro del rango valido
+					System.err.println("Error: Introduce un número válido (1, 2, o 3).");
+					continue; // Se vuelve al inicio del bucle para solicitar nuevamente la opcion
+				}
+			} catch (NumberFormatException ne) {
+				// Si se produce un error en el formato del nº
+				System.err.println("Error: Introduce un número válido (1, 2, o 3).");
+				continue;
+			}
+
+			try {
+				switch (num) {
+				case 1:
+					JugadoresSc(sc);
+					break;
+				case 2:
+					EquiposSc(sc);
+					break;
+				case 3:
+					System.exit(0);
+
+				default:
+					break;
+				}
+			} catch (Exception e) {
+				System.out.println("ERROR: \n");
+				e.printStackTrace();
 			}
 		}
 
@@ -454,6 +538,7 @@ public class MongoDb_Recuperacion {
 
 			m.close(); // Se cierra conexion con MongoDB
 		} catch (Exception e) {
+			System.out.println("Error: \n");
 			e.printStackTrace();
 		}
 	}
@@ -508,13 +593,12 @@ public class MongoDb_Recuperacion {
 	 * -------METODOS PARA BORRAR DATOS-------
 	 */
 	private static void Borrar(Scanner sc) {
-		
+
 		String enter = sc.nextLine();
 
 		// Solicitamos la coleccion que queremos hacer las modificaciones
 		while (true) {
-			
-			
+
 			System.out.println("¿A qué colección le quieres borrar datos? (POR TECLADO)");
 			System.out.println("=================");
 			System.out.println("1- Jugadores");
@@ -540,8 +624,8 @@ public class MongoDb_Recuperacion {
 				continue;
 			}
 
-			try{
-				
+			try {
+
 				switch (num) {
 				case 1:
 					JugadoresBorrar(sc); // Metodo de los jugadores
@@ -554,15 +638,16 @@ public class MongoDb_Recuperacion {
 				default:
 					System.out.println("Opción inválida.");
 				}
-//		            m.close();
+
 			} catch (Exception e) {
-				// TODO: handle exception
+				System.out.println("Error: \n");
+				e.printStackTrace();
 			}
 		}
 
 	}
 
-	private static void JugadoresBorrar(Scanner sc ) {
+	private static void JugadoresBorrar(Scanner sc) {
 		MongoClient m = new MongoClient();
 		MongoDatabase db = m.getDatabase("IE_Recu");
 		System.out.println("\nIntroduce el ID del jugador que quieras borrar: ");
@@ -629,6 +714,7 @@ public class MongoDb_Recuperacion {
 	 * -------METODOS PARA VISUALIZAR DATOS-------
 	 */
 	private static void VisualizarDatos(Scanner sc) {
+		String s = sc.nextLine();
 		while (true) {
 			System.err.println("¿A que coleccion le quieres visualizar datos? ");
 			System.out.println("=================");
@@ -638,20 +724,43 @@ public class MongoDb_Recuperacion {
 			System.out.println("=================");
 			System.out.print("Escribe tu opcion: ");
 
-			int num = sc.nextInt();
-			switch (num) {
-			case 1:
-				JugadoresVis(sc);
-				break;
-			case 2:
-				EquiposVIs(sc);
-				break;
-			case 3:
-				System.exit(0);
+			String choice = sc.nextLine();
 
-			default:
-				break;
+			int num;
+			try {
+
+				num = Integer.parseInt(choice); // Conversion de la opcion a un nº entero
+				if (num < 1 || num > 3) {
+					// Se verifica si el nº esta dentro del rango valido
+					System.err.println("Error: Introduce un número válido (1, 2, o 3).");
+					continue; // Se vuelve al inicio del bucle para solicitar nuevamente la opcion
+				}
+			} catch (NumberFormatException ne) {
+				// Si se produce un error en el formato del nº
+				System.err.println("Error: Introduce un número válido (1, 2, o 3).");
+				continue;
 			}
+			
+			try {
+				switch (num) {
+				case 1:
+					JugadoresVis(sc);
+					break;
+				case 2:
+					EquiposVIs(sc);
+					break;
+				case 3:
+					System.exit(0);
+
+				default:
+					System.out.println("Opción inválida.");
+				}
+			} catch (Exception en) {
+				System.out.println("ERROR: \n");
+				en.printStackTrace();
+			}
+			
+			
 		}
 	}
 

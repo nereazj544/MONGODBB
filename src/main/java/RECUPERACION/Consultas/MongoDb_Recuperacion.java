@@ -26,6 +26,8 @@ import com.mongodb.client.result.DeleteResult;
 
 /**
  * @author Nerea Zapatero Jara
+ * 
+ * TODO: Falta implementar lo del jugador si no tiene equipo, ¿que pasa? 
  */
 public class MongoDb_Recuperacion {
 
@@ -515,6 +517,7 @@ public class MongoDb_Recuperacion {
 
 			System.out.println("====================================");
 			System.out.println("Datos a insertar: Nombre, Posicion, Equipo");
+			System.out.println("====================================\n");
 			// Mostramos por pantalla los parametros que vamos a ir introduciendo por
 			// teclado
 
@@ -522,14 +525,15 @@ public class MongoDb_Recuperacion {
 			String e = sc.nextLine();
 
 			System.out.println("====================================");
-			System.out.println("Nombre del jugador: ");
+			System.out.print("Nombre del jugador: ");
 			String nombre = sc.nextLine();
 
-			System.out.println("Posicion en la que juega: ");
+			System.out.print("Posicion en la que juega: ");
 			String posicion = sc.nextLine();
 
-			System.out.println("Equipo en el que juega: ");
+			System.out.print("Equipo en el que juega: ");
 			String equipo = sc.nextLine();
+			System.out.println("====================================\n");
 
 			Document d = new Document();
 			// !Insertamos los datos en las correspondientes datos en el MongoDb
@@ -557,25 +561,28 @@ public class MongoDb_Recuperacion {
 
 			System.out.println("====================================");
 			System.out.println("Datos a insertar: Nombre, Liga, Entrenador, Capitan, Jugadores");
+			System.out.println("====================================");
 			// Mostramos por pantalla los parametros que vamos a ir introduciendo por
 			// teclado
 
 			System.out.println("Enter para continuar");
 			String e1 = sc.nextLine();
 
-			System.out.println("Nombre del Equipo: ");
+			System.out.println("====================================");
+			System.out.print("Nombre del Equipo: ");
 			String nombreequ = sc.nextLine();
 
-			System.out.println("Liga: ");
+			System.out.print("Liga: ");
 			String liga = sc.nextLine();
 
-			System.out.println("Entrenador del Equipo: ");
+			System.out.print("Entrenador del Equipo: ");
 			String entrenador = sc.nextLine();
 
-			System.out.println("Capitan del Equipo: ");
+			System.out.print("Capitan del Equipo: ");
 			String capitan = sc.nextLine();
-			System.out.println("Jugadores del Equipo: ");
+			System.out.print("Jugadores del Equipo: ");
 			String jugadores = sc.nextLine();
+			System.out.println("====================================");
 
 			Document d = new Document();
 			d.put("nombre", nombreequ);
